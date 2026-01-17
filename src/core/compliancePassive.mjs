@@ -1,4 +1,5 @@
 // OPEN STUB: passive compliance is paid-platform only in Open Core distribution.
+
 export function getPassiveComplianceStatus() {
   return {
     ok: false,
