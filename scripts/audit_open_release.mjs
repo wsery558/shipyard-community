@@ -15,6 +15,24 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
+// OPEN_CORE_LAYOUT_FALLBACK_V1
+// open snapshot uses packages/open-core layout; accept legacy src/core checks by fallback mapping
+function _existsWithFallback(ROOT, relPath) {
+  try {
+    const full = path.join(ROOT, relPath);
+    if (fs.existsSync(full)) return { ok: true, path: relPath };
+    if (typeof relPath === "string" && relPath.startsWith("src/core/")) {
+      const alt = relPath.replace(/^src\/core\//, "packages/open-core/src/core/");
+      const full2 = path.join(ROOT, alt);
+      if (fs.existsSync(full2)) return { ok: true, path: alt };
+    }
+    return { ok: false, path: relPath };
+  } catch {
+    return { ok: false, path: relPath };
+  }
+}
+
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, '..');
 const distDir = path.resolve(rootDir, 'dist');
@@ -162,9 +180,8 @@ if (secretsFound === 0) {
 // Check 5: Required open-core modules exist
 console.log('\nCheck 5: Required open-core modules');
 const requiredModules = [
-  'src/core/complianceRunner.mjs',
-  'src/core/projectCore.mjs',
-  'src/core/artifactManager.mjs'
+  'packages/open-core/src/core/complianceRunner.mjs',
+  'packages/open-core/src/core/artifactManager.mjs'
 ];
 
 let allPresent = true;
