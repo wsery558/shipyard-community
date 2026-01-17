@@ -1,0 +1,14 @@
+{
+  "projectId": "demo-project",
+  "projectName": "Demo Project (Placeholder)",
+  "status": "warn",
+  "checksCount": 4,
+  "checksPassed": 3,
+  "checksWarned": 0,
+  "checksFailed": 0,
+  "checksNonCompliant": 0,
+  "startedAt": "2026-01-17T18:37:33.221Z",
+  "finishedAt": "2026-01-17T18:37:33.224Z",
+  "durationMs": 3,
+  "complianceType": "commands"
+}

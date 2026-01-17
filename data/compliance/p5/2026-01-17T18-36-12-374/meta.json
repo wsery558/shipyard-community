@@ -1,0 +1,14 @@
+{
+  "projectId": "p5",
+  "projectName": "Test Project",
+  "status": "warn",
+  "checksCount": 2,
+  "checksPassed": 1,
+  "checksWarned": 0,
+  "checksFailed": 0,
+  "checksNonCompliant": 0,
+  "startedAt": "2026-01-17T18:36:12.374Z",
+  "finishedAt": "2026-01-17T18:36:12.376Z",
+  "durationMs": 2,
+  "complianceType": "commands"
+}

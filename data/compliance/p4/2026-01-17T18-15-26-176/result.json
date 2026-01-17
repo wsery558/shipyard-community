@@ -1,0 +1,35 @@
+{
+  "checks": [
+    {
+      "name": "echo 'ok'",
+      "status": "pass",
+      "reason": "Command succeeded",
+      "evidencePath": "compliance/p4/2026-01-17T18-15-26-176"
+    },
+    {
+      "name": "contract-enforcer",
+      "status": "non_compliant",
+      "reason": "pconst_missing,required_events_missing",
+      "evidencePath": "compliance/p4/2026-01-17T18-15-26-176",
+      "details": {
+        "expectedVersion": "1.0",
+        "expectedHash": null,
+        "pconstPath": "PCONST.md",
+        "missingFields": [
+          "pconst_missing",
+          "required_events_missing"
+        ],
+        "actualVersion": null,
+        "actualHash": null,
+        "requiredEvents": [
+          "req-evt"
+        ],
+        "missingEvents": [
+          "req-evt"
+        ],
+        "presentEvents": [],
+        "evidenceFile": "/home/ken/code/agent-dashboard/data/compliance/p4/2026-01-17T18-15-26-176/contract_enforcer.json"
+      }
+    }
+  ]
+}

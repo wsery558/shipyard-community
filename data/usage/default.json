@@ -1,0 +1,13 @@
+{
+  "projectId": "default",
+  "totals": {
+    "gpt-5.1-codex-mini": {
+      "input_tokens": 132,
+      "output_tokens": 28,
+      "total_tokens": 160,
+      "cost_usd": 0.000089,
+      "cost_twd": 0.002848
+    }
+  },
+  "updatedAt": "2026-01-15T09:17:42.830Z"
+}

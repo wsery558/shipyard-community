@@ -1,0 +1,14 @@
+{
+  "projectId": "agent-dashboard",
+  "projectName": "Agent Dashboard",
+  "status": "warn",
+  "checksCount": 4,
+  "checksPassed": 2,
+  "checksWarned": 1,
+  "checksFailed": 0,
+  "checksNonCompliant": 0,
+  "startedAt": "2026-01-17T18:37:43.282Z",
+  "finishedAt": "2026-01-17T18:37:48.211Z",
+  "durationMs": 4929,
+  "complianceType": "commands"
+}

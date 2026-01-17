@@ -1,0 +1,300 @@
+{
+  "artifacts": [
+    {
+      "id": "artifact_1768675028179_fwjn8e8",
+      "ts": "2026-01-17T18:37:08.179Z",
+      "project": "test-query-proj1",
+      "runSessionId": "rs-query-1",
+      "cmd": "test-cmd-0",
+      "exitCode": 1,
+      "files": {
+        "stdoutPath": "/home/ken/code/agent-dashboard/data/runs/test-query-proj1/verify_rs-query-1_1768675028179_0_stdout.txt",
+        "stderrPath": "/home/ken/code/agent-dashboard/data/runs/test-query-proj1/verify_rs-query-1_1768675028179_0_stderr.txt",
+        "metaPath": "/home/ken/code/agent-dashboard/data/runs/test-query-proj1/verify_rs-query-1_1768675028179_0_meta.json"
+      },
+      "sizeBytes": 2129
+    },
+    {
+      "id": "artifact_1768675028179_5zabdmf",
+      "ts": "2026-01-17T18:37:08.179Z",
+      "project": "test-query-proj1",
+      "runSessionId": "rs-query-1",
+      "cmd": "test-cmd-1",
+      "exitCode": 1,
+      "files": {
+        "stdoutPath": "/home/ken/code/agent-dashboard/data/runs/test-query-proj1/verify_rs-query-1_1768675028179_1_stdout.txt",
+        "stderrPath": "/home/ken/code/agent-dashboard/data/runs/test-query-proj1/verify_rs-query-1_1768675028179_1_stderr.txt",
+        "metaPath": "/home/ken/code/agent-dashboard/data/runs/test-query-proj1/verify_rs-query-1_1768675028179_1_meta.json"
+      },
+      "sizeBytes": 2129
+    },
+    {
+      "id": "artifact_1768675028179_ldfg20j",
+      "ts": "2026-01-17T18:37:08.179Z",
+      "project": "test-query-proj1",
+      "runSessionId": "rs-query-2",
+      "cmd": "test-cmd-0",
+      "exitCode": 1,
+      "files": {
+        "stdoutPath": "/home/ken/code/agent-dashboard/data/runs/test-query-proj1/verify_rs-query-2_1768675028179_0_stdout.txt",
+        "stderrPath": "/home/ken/code/agent-dashboard/data/runs/test-query-proj1/verify_rs-query-2_1768675028179_0_stderr.txt",
+        "metaPath": "/home/ken/code/agent-dashboard/data/runs/test-query-proj1/verify_rs-query-2_1768675028179_0_meta.json"
+      },
+      "sizeBytes": 2129
+    },
+    {
+      "id": "artifact_1768675028180_mox44xh",
+      "ts": "2026-01-17T18:37:08.180Z",
+      "project": "test-query-proj1",
+      "runSessionId": "rs-query-2",
+      "cmd": "test-cmd-1",
+      "exitCode": 1,
+      "files": {
+        "stdoutPath": "/home/ken/code/agent-dashboard/data/runs/test-query-proj1/verify_rs-query-2_1768675028179_1_stdout.txt",
+        "stderrPath": "/home/ken/code/agent-dashboard/data/runs/test-query-proj1/verify_rs-query-2_1768675028179_1_stderr.txt",
+        "metaPath": "/home/ken/code/agent-dashboard/data/runs/test-query-proj1/verify_rs-query-2_1768675028179_1_meta.json"
+      },
+      "sizeBytes": 2129
+    },
+    {
+      "id": "artifact_1768675028180_jn4jrvl",
+      "ts": "2026-01-17T18:37:08.180Z",
+      "project": "test-query-proj1",
+      "runSessionId": "rs-query-2",
+      "cmd": "test-cmd-2",
+      "exitCode": 1,
+      "files": {
+        "stdoutPath": "/home/ken/code/agent-dashboard/data/runs/test-query-proj1/verify_rs-query-2_1768675028180_2_stdout.txt",
+        "stderrPath": "/home/ken/code/agent-dashboard/data/runs/test-query-proj1/verify_rs-query-2_1768675028180_2_stderr.txt",
+        "metaPath": "/home/ken/code/agent-dashboard/data/runs/test-query-proj1/verify_rs-query-2_1768675028180_2_meta.json"
+      },
+      "sizeBytes": 2129
+    },
+    {
+      "id": "artifact_1768675028180_csbmjyx",
+      "ts": "2026-01-17T18:37:08.180Z",
+      "project": "test-query-proj2",
+      "runSessionId": "rs-query-1",
+      "cmd": "test-cmd-0",
+      "exitCode": 1,
+      "files": {
+        "stdoutPath": "/home/ken/code/agent-dashboard/data/runs/test-query-proj2/verify_rs-query-1_1768675028180_0_stdout.txt",
+        "stderrPath": "/home/ken/code/agent-dashboard/data/runs/test-query-proj2/verify_rs-query-1_1768675028180_0_stderr.txt",
+        "metaPath": "/home/ken/code/agent-dashboard/data/runs/test-query-proj2/verify_rs-query-1_1768675028180_0_meta.json"
+      },
+      "sizeBytes": 2129
+    },
+    {
+      "id": "artifact_1768675028189_z6jcg4h",
+      "ts": "2026-01-17T18:37:08.189Z",
+      "project": "testproj",
+      "runSessionId": "rs1",
+      "cmd": "bash -c \"echo fail 1>&2; exit 3\"",
+      "exitCode": 3,
+      "files": {
+        "stdoutPath": "/home/ken/code/agent-dashboard/data/runs/testproj/verify_rs1_1768675028174_stdout.txt",
+        "stderrPath": "/home/ken/code/agent-dashboard/data/runs/testproj/verify_rs1_1768675028174_stderr.txt",
+        "metaPath": "/home/ken/code/agent-dashboard/data/runs/testproj/verify_rs1_1768675028174_meta.json",
+        "envPath": "/home/ken/code/agent-dashboard/data/runs/testproj/verify_rs1_1768675028174_env.txt",
+        "psPath": "/home/ken/code/agent-dashboard/data/runs/testproj/verify_rs1_1768675028174_ps.txt"
+      },
+      "sizeBytes": 28911
+    },
+    {
+      "id": "artifact_1768675028192_cepx02y",
+      "ts": "2026-01-17T18:37:08.192Z",
+      "project": "p4",
+      "runSessionId": "compliance-2026-01-17T18-37-08-189",
+      "cmd": "compliance-check",
+      "exitCode": 1,
+      "files": {
+        "metaPath": "/home/ken/code/agent-dashboard/data/compliance/p4/2026-01-17T18-37-08-189/meta.json",
+        "resultsPath": "/home/ken/code/agent-dashboard/data/compliance/p4/2026-01-17T18-37-08-189/result.json",
+        "contractPath": "/home/ken/code/agent-dashboard/data/compliance/p4/2026-01-17T18-37-08-189/contract_enforcer.json"
+      },
+      "sizeBytes": 1586
+    },
+    {
+      "id": "artifact_1768675028200_jq4ukp6",
+      "ts": "2026-01-17T18:37:08.200Z",
+      "project": "p5",
+      "runSessionId": "compliance-2026-01-17T18-37-08-197",
+      "cmd": "compliance-check",
+      "exitCode": 1,
+      "files": {
+        "metaPath": "/home/ken/code/agent-dashboard/data/compliance/p5/2026-01-17T18-37-08-197/meta.json",
+        "resultsPath": "/home/ken/code/agent-dashboard/data/compliance/p5/2026-01-17T18-37-08-197/result.json",
+        "contractPath": "/home/ken/code/agent-dashboard/data/compliance/p5/2026-01-17T18-37-08-197/contract_enforcer.json"
+      },
+      "sizeBytes": 1632
+    },
+    {
+      "id": "artifact_1768675033207_xythkme",
+      "ts": "2026-01-17T18:37:13.207Z",
+      "project": "agent-dashboard",
+      "runSessionId": "compliance-2026-01-17T18-37-08-177",
+      "cmd": "compliance-check",
+      "exitCode": 1,
+      "files": {
+        "metaPath": "/home/ken/code/agent-dashboard/data/compliance/agent-dashboard/2026-01-17T18-37-08-177/meta.json",
+        "resultsPath": "/home/ken/code/agent-dashboard/data/compliance/agent-dashboard/2026-01-17T18-37-08-177/result.json",
+        "contractPath": "/home/ken/code/agent-dashboard/data/compliance/agent-dashboard/2026-01-17T18-37-08-177/contract_enforcer.json"
+      },
+      "sizeBytes": 2135
+    },
+    {
+      "id": "artifact_1768675038144_cd26via",
+      "ts": "2026-01-17T18:37:18.144Z",
+      "project": "agent-dashboard",
+      "runSessionId": "compliance-2026-01-17T18-37-13-208",
+      "cmd": "compliance-check",
+      "exitCode": 1,
+      "files": {
+        "metaPath": "/home/ken/code/agent-dashboard/data/compliance/agent-dashboard/2026-01-17T18-37-13-208/meta.json",
+        "resultsPath": "/home/ken/code/agent-dashboard/data/compliance/agent-dashboard/2026-01-17T18-37-13-208/result.json",
+        "contractPath": "/home/ken/code/agent-dashboard/data/compliance/agent-dashboard/2026-01-17T18-37-13-208/contract_enforcer.json"
+      },
+      "sizeBytes": 2135
+    },
+    {
+      "id": "artifact_1768675043170_utxfifq",
+      "ts": "2026-01-17T18:37:23.170Z",
+      "project": "agent-dashboard",
+      "runSessionId": "compliance-2026-01-17T18-37-18-146",
+      "cmd": "compliance-check",
+      "exitCode": 1,
+      "files": {
+        "metaPath": "/home/ken/code/agent-dashboard/data/compliance/agent-dashboard/2026-01-17T18-37-18-146/meta.json",
+        "resultsPath": "/home/ken/code/agent-dashboard/data/compliance/agent-dashboard/2026-01-17T18-37-18-146/result.json",
+        "contractPath": "/home/ken/code/agent-dashboard/data/compliance/agent-dashboard/2026-01-17T18-37-18-146/contract_enforcer.json"
+      },
+      "sizeBytes": 2135
+    },
+    {
+      "id": "artifact_1768675048196_4o442mw",
+      "ts": "2026-01-17T18:37:28.196Z",
+      "project": "agent-dashboard",
+      "runSessionId": "compliance-2026-01-17T18-37-23-171",
+      "cmd": "compliance-check",
+      "exitCode": 1,
+      "files": {
+        "metaPath": "/home/ken/code/agent-dashboard/data/compliance/agent-dashboard/2026-01-17T18-37-23-171/meta.json",
+        "resultsPath": "/home/ken/code/agent-dashboard/data/compliance/agent-dashboard/2026-01-17T18-37-23-171/result.json",
+        "contractPath": "/home/ken/code/agent-dashboard/data/compliance/agent-dashboard/2026-01-17T18-37-23-171/contract_enforcer.json"
+      },
+      "sizeBytes": 2135
+    },
+    {
+      "id": "artifact_1768675053220_q7t3zkj",
+      "ts": "2026-01-17T18:37:33.220Z",
+      "project": "agent-dashboard",
+      "runSessionId": "compliance-2026-01-17T18-37-28-196",
+      "cmd": "compliance-check",
+      "exitCode": 1,
+      "files": {
+        "metaPath": "/home/ken/code/agent-dashboard/data/compliance/agent-dashboard/2026-01-17T18-37-28-196/meta.json",
+        "resultsPath": "/home/ken/code/agent-dashboard/data/compliance/agent-dashboard/2026-01-17T18-37-28-196/result.json",
+        "contractPath": "/home/ken/code/agent-dashboard/data/compliance/agent-dashboard/2026-01-17T18-37-28-196/contract_enforcer.json"
+      },
+      "sizeBytes": 2135
+    },
+    {
+      "id": "artifact_1768675053225_d33jsd7",
+      "ts": "2026-01-17T18:37:33.225Z",
+      "project": "demo-project",
+      "runSessionId": "compliance-2026-01-17T18-37-33-221",
+      "cmd": "compliance-check",
+      "exitCode": 1,
+      "files": {
+        "metaPath": "/home/ken/code/agent-dashboard/data/compliance/demo-project/2026-01-17T18-37-33-221/meta.json",
+        "resultsPath": "/home/ken/code/agent-dashboard/data/compliance/demo-project/2026-01-17T18-37-33-221/result.json",
+        "contractPath": "/home/ken/code/agent-dashboard/data/compliance/demo-project/2026-01-17T18-37-33-221/contract_enforcer.json"
+      },
+      "sizeBytes": 2068
+    },
+    {
+      "id": "artifact_1768675058252_9qrouga",
+      "ts": "2026-01-17T18:37:38.252Z",
+      "project": "agent-dashboard",
+      "runSessionId": "compliance-2026-01-17T18-37-33-225",
+      "cmd": "compliance-check",
+      "exitCode": 1,
+      "files": {
+        "metaPath": "/home/ken/code/agent-dashboard/data/compliance/agent-dashboard/2026-01-17T18-37-33-225/meta.json",
+        "resultsPath": "/home/ken/code/agent-dashboard/data/compliance/agent-dashboard/2026-01-17T18-37-33-225/result.json",
+        "contractPath": "/home/ken/code/agent-dashboard/data/compliance/agent-dashboard/2026-01-17T18-37-33-225/contract_enforcer.json"
+      },
+      "sizeBytes": 2135
+    },
+    {
+      "id": "artifact_1768675063277_dwheuuq",
+      "ts": "2026-01-17T18:37:43.277Z",
+      "project": "agent-dashboard",
+      "runSessionId": "compliance-2026-01-17T18-37-38-254",
+      "cmd": "compliance-check",
+      "exitCode": 1,
+      "files": {
+        "metaPath": "/home/ken/code/agent-dashboard/data/compliance/agent-dashboard/2026-01-17T18-37-38-254/meta.json",
+        "resultsPath": "/home/ken/code/agent-dashboard/data/compliance/agent-dashboard/2026-01-17T18-37-38-254/result.json",
+        "contractPath": "/home/ken/code/agent-dashboard/data/compliance/agent-dashboard/2026-01-17T18-37-38-254/contract_enforcer.json"
+      },
+      "sizeBytes": 2135
+    },
+    {
+      "id": "artifact_1768675068211_m2e1x9h",
+      "ts": "2026-01-17T18:37:48.211Z",
+      "project": "agent-dashboard",
+      "runSessionId": "compliance-2026-01-17T18-37-43-282",
+      "cmd": "compliance-check",
+      "exitCode": 1,
+      "files": {
+        "metaPath": "/home/ken/code/agent-dashboard/data/compliance/agent-dashboard/2026-01-17T18-37-43-282/meta.json",
+        "resultsPath": "/home/ken/code/agent-dashboard/data/compliance/agent-dashboard/2026-01-17T18-37-43-282/result.json",
+        "contractPath": "/home/ken/code/agent-dashboard/data/compliance/agent-dashboard/2026-01-17T18-37-43-282/contract_enforcer.json"
+      },
+      "sizeBytes": 2135
+    },
+    {
+      "id": "artifact_1768675073233_x15ygbc",
+      "ts": "2026-01-17T18:37:53.233Z",
+      "project": "agent-dashboard",
+      "runSessionId": "compliance-2026-01-17T18-37-48-212",
+      "cmd": "compliance-check",
+      "exitCode": 1,
+      "files": {
+        "metaPath": "/home/ken/code/agent-dashboard/data/compliance/agent-dashboard/2026-01-17T18-37-48-212/meta.json",
+        "resultsPath": "/home/ken/code/agent-dashboard/data/compliance/agent-dashboard/2026-01-17T18-37-48-212/result.json",
+        "contractPath": "/home/ken/code/agent-dashboard/data/compliance/agent-dashboard/2026-01-17T18-37-48-212/contract_enforcer.json"
+      },
+      "sizeBytes": 2135
+    },
+    {
+      "id": "artifact_1768675078266_a0nx8co",
+      "ts": "2026-01-17T18:37:58.266Z",
+      "project": "agent-dashboard",
+      "runSessionId": "compliance-2026-01-17T18-37-53-244",
+      "cmd": "compliance-check",
+      "exitCode": 1,
+      "files": {
+        "metaPath": "/home/ken/code/agent-dashboard/data/compliance/agent-dashboard/2026-01-17T18-37-53-244/meta.json",
+        "resultsPath": "/home/ken/code/agent-dashboard/data/compliance/agent-dashboard/2026-01-17T18-37-53-244/result.json",
+        "contractPath": "/home/ken/code/agent-dashboard/data/compliance/agent-dashboard/2026-01-17T18-37-53-244/contract_enforcer.json"
+      },
+      "sizeBytes": 2135
+    },
+    {
+      "id": "artifact_1768675078270_kf8acrc",
+      "ts": "2026-01-17T18:37:58.270Z",
+      "project": "demo-project",
+      "runSessionId": "compliance-2026-01-17T18-37-58-267",
+      "cmd": "compliance-check",
+      "exitCode": 0,
+      "files": {
+        "metaPath": "/home/ken/code/agent-dashboard/data/compliance/demo-project/2026-01-17T18-37-58-267/meta.json",
+        "resultsPath": "/home/ken/code/agent-dashboard/data/compliance/demo-project/2026-01-17T18-37-58-267/result.json",
+        "contractPath": "/home/ken/code/agent-dashboard/data/compliance/demo-project/2026-01-17T18-37-58-267/contract_enforcer.json"
+      },
+      "sizeBytes": 1754
+    }
+  ]
+}

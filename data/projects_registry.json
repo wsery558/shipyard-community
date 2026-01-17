@@ -1,0 +1,49 @@
+{
+  "projects": [
+    {
+      "projectId": "agent-dashboard",
+      "name": "Agent Dashboard",
+      "repoPath": "/home/ken/code/agent-dashboard",
+      "baseUrl": "http://localhost:8799",
+      "compliance": {
+        "type": "commands",
+        "commands": [
+          "pnpm -s test:smoke",
+          "node -e \"console.log('Dashboard health: OK')\"",
+          "test -f server.mjs && echo 'Main server OK' || echo 'Main server MISSING'"
+        ]
+      },
+      "expected": {
+        "requiredEvents": ["smoke-pass", "server-ready"],
+        "gatedFeatures": ["autopilot", "danger-gating"],
+        "pconstPath": "PCONST.md",
+        "pconstVersion": "4.8.0-rc1",
+        "contractVersion": "1.0"
+      }
+    },
+    {
+      "projectId": "demo-project",
+      "name": "Demo Project (Placeholder)",
+      "repoPath": "/tmp/demo-project",
+      "baseUrl": "http://localhost:9000",
+      "compliance": {
+        "type": "commands",
+        "commands": [
+          "echo 'Demo project compliance check'",
+          "echo 'Status: READY'",
+          "date"
+        ]
+      },
+      "expected": {
+        "requiredEvents": ["compliance-check"],
+        "gatedFeatures": [],
+        "pconstPath": "PCONST.md",
+        "pconstVersion": "1.0.0",
+        "contractVersion": "1.0"
+      }
+    }
+  ],
+  "registryVersion": "1.0",
+  "lastUpdated": "2026-01-18T00:00:00Z",
+  "schemaVersion": "v1.0"
+}

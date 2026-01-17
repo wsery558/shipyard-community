@@ -1,0 +1,31 @@
+{
+  "users": [
+    {
+      "user_id": "demo-user-001",
+      "name": "Demo User",
+      "email": "demo@agent-dashboard.local",
+      "org": "Internal",
+      "role": "admin",
+      "created_at": "2025-01-01T00:00:00Z",
+      "last_seen_at": "2026-01-18T00:00:00Z"
+    },
+    {
+      "user_id": "test-user-001",
+      "name": "Test User",
+      "email": "test@agent-dashboard.local",
+      "org": "Internal",
+      "role": "member",
+      "created_at": "2025-06-01T00:00:00Z",
+      "last_seen_at": "2026-01-17T00:00:00Z"
+    },
+    {
+      "user_id": "test-user-002",
+      "name": "Test User 2",
+      "email": "test2@agent-dashboard.local",
+      "org": "Internal",
+      "role": "member",
+      "created_at": "2025-08-15T00:00:00Z",
+      "last_seen_at": "2026-01-16T00:00:00Z"
+    }
+  ]
+}

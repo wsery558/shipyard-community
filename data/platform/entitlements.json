@@ -1,0 +1,49 @@
+{
+  "entitlements": [
+    {
+      "entitlement_id": "ent-001",
+      "user_id": "demo-user-001",
+      "feature": "compliance.admin",
+      "plan": "enterprise",
+      "granted_at": "2025-01-01T00:00:00Z",
+      "expires_at": null,
+      "active": true
+    },
+    {
+      "entitlement_id": "ent-002",
+      "user_id": "demo-user-001",
+      "feature": "reports.export",
+      "plan": "enterprise",
+      "granted_at": "2025-01-01T00:00:00Z",
+      "expires_at": null,
+      "active": true
+    },
+    {
+      "entitlement_id": "ent-003",
+      "user_id": "test-user-001",
+      "feature": "basic.dashboard",
+      "plan": "standard",
+      "granted_at": "2025-06-01T00:00:00Z",
+      "expires_at": "2026-06-01T00:00:00Z",
+      "active": true
+    },
+    {
+      "entitlement_id": "ent-004",
+      "user_id": "test-user-002",
+      "feature": "basic.dashboard",
+      "plan": "standard",
+      "granted_at": "2025-08-15T00:00:00Z",
+      "expires_at": "2026-08-15T00:00:00Z",
+      "active": false
+    },
+    {
+      "entitlement_id": "ent-1768668148240-8ywryyx9e",
+      "user_id": "test-user-001",
+      "feature": "test.feature",
+      "plan": "test-plan",
+      "granted_at": "2026-01-17T16:42:28.240Z",
+      "expires_at": null,
+      "active": true
+    }
+  ]
+}

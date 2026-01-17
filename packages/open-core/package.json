@@ -1,0 +1,23 @@
+{
+  "name": "@open-core/orchestrator",
+  "version": "4.9.0-rc1",
+  "type": "module",
+  "main": "src/core/index.mjs",
+  "description": "Open Core - Local orchestrator, plan/budget/runlog/reports/compliance",
+  "exports": {
+    ".": {
+      "import": "./src/core/index.mjs"
+    },
+    "./plan": "./src/core/plan.mjs",
+    "./budget": "./src/core/budget.mjs",
+    "./runlog": "./src/core/runlog.mjs",
+    "./artifacts": "./src/core/artifactManager.mjs",
+    "./report": "./src/core/report.mjs",
+    "./compliance": "./src/core/complianceRunner.mjs",
+    "./safety": "./src/core/safety.mjs",
+    "./policy": "./src/core/policyEngine.mjs"
+  },
+  "dependencies": {
+    "minimatch": "^10.0.1"
+  }
+}

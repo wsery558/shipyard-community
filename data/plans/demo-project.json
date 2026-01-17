@@ -1,0 +1,22 @@
+{
+  "project": "demo-project",
+  "requirements": "Run tests\nDeploy to preview",
+  "tasks": [
+    {
+      "id": "run_tests_0",
+      "title": "Run tests",
+      "points": 10,
+      "status": "todo",
+      "verify": [],
+      "notes": ""
+    },
+    {
+      "id": "deploy_to_preview_1",
+      "title": "Deploy to preview",
+      "points": 10,
+      "status": "todo",
+      "verify": [],
+      "notes": ""
+    }
+  ]
+}

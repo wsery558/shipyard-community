@@ -1,0 +1,46 @@
+{
+  "checks": [
+    {
+      "name": "echo 'Demo",
+      "status": "pass",
+      "reason": "Command succeeded",
+      "evidencePath": "compliance/demo-project/2026-01-17T18-37-33-221"
+    },
+    {
+      "name": "echo 'Status:",
+      "status": "pass",
+      "reason": "Command succeeded",
+      "evidencePath": "compliance/demo-project/2026-01-17T18-37-33-221"
+    },
+    {
+      "name": "date",
+      "status": "pass",
+      "reason": "Command succeeded",
+      "evidencePath": "compliance/demo-project/2026-01-17T18-37-33-221"
+    },
+    {
+      "name": "contract-enforcer",
+      "status": "partial",
+      "reason": "Missing required events",
+      "evidencePath": "compliance/demo-project/2026-01-17T18-37-33-221",
+      "details": {
+        "expectedVersion": "1.0",
+        "expectedHash": null,
+        "pconstPath": "PCONST.md",
+        "missingFields": [
+          "required_events_missing"
+        ],
+        "actualVersion": "1.0",
+        "actualHash": "591e6974a182d5b31bf6eb7d59d9da4a282c0ae22f7ecef87a9ddee2cc341817",
+        "requiredEvents": [
+          "compliance-check"
+        ],
+        "missingEvents": [
+          "compliance-check"
+        ],
+        "presentEvents": [],
+        "evidenceFile": "/home/ken/code/agent-dashboard/data/compliance/demo-project/2026-01-17T18-37-33-221/contract_enforcer.json"
+      }
+    }
+  ]
+}

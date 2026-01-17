@@ -1,0 +1,31 @@
+{
+  "project": "default",
+  "requirements": "Create 2 tasks: setup repo and run tests",
+  "tasks": [
+    {
+      "id": "setup_repo_0",
+      "title": "Setup repo",
+      "points": 3,
+      "status": "blocked",
+      "verify": [
+        "Repository created on chosen hosting (GitHub/GitLab/Bitbucket)",
+        "Initial commit pushed with README and .gitignore",
+        "Default branch configured and branch protections applied if required"
+      ],
+      "notes": "Include basic repository metadata and a LICENSE; consider adding CI config for automated tests.\nPM did not mark done"
+    },
+    {
+      "id": "run_tests_1",
+      "title": "Run tests",
+      "points": 5,
+      "status": "blocked",
+      "verify": [
+        "Project dependencies installed successfully",
+        "Tests executed locally using project's test command (e.g., npm test, pytest)",
+        "All tests pass (or failing tests documented with next steps)",
+        "CI pipeline configured to run tests on push/PR and passes"
+      ],
+      "notes": "Ensure test command is defined in project config (package.json, pyproject.toml, etc.).\nPM did not mark done"
+    }
+  ]
+}

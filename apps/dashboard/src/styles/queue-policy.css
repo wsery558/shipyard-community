@@ -1,0 +1,181 @@
+/* Queue & Policy Panels */
+
+.queue-panel, .policy-panel {
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 8px;
+  margin-top: 12px;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #1976d2;
+}
+
+.panel-header h3 {
+  margin: 0;
+  font-size: 20px;
+  color: #333;
+}
+
+.panel-header .btn-secondary {
+  padding: 8px 16px;
+  background: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.panel-header .btn-secondary:hover {
+  background: #e0e0e0;
+}
+
+/* Queue Content */
+.queue-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.queue-content .metric {
+  padding: 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  background: #f9f9f9;
+}
+
+.queue-content .metric label {
+  display: block;
+  font-weight: 600;
+  color: #666;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.queue-content .metric div {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1976d2;
+  word-break: break-all;
+}
+
+/* Approvals List */
+.approvals-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.approval-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border: 1px solid #ffb74d;
+  border-radius: 6px;
+  background: #fffde7;
+}
+
+.approval-item.critical {
+  border-color: #e53935;
+  background: #ffebee;
+}
+
+.approval-main {
+  flex: 1;
+}
+
+.approval-title {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 4px;
+  font-size: 16px;
+}
+
+.approval-meta {
+  font-size: 12px;
+  color: #999;
+  margin-bottom: 8px;
+}
+
+.approval-command {
+  background: #ffffff;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  overflow: auto;
+  max-height: 60px;
+  word-break: break-all;
+}
+
+.approval-command code {
+  color: #d32f2f;
+  font-family: 'Courier New', monospace;
+}
+
+.approval-actions {
+  display: flex;
+  gap: 8px;
+  margin-left: 16px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.approval-actions .btn-primary,
+.approval-actions .btn-secondary {
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.approval-actions .btn-primary {
+  background: #4caf50;
+  color: #fff;
+}
+
+.approval-actions .btn-primary:hover {
+  background: #45a049;
+}
+
+.approval-actions .btn-secondary {
+  background: #f44336;
+  color: #fff;
+}
+
+.approval-actions .btn-secondary:hover {
+  background: #da190b;
+}
+
+.empty-message {
+  text-align: center;
+  color: #999;
+  padding: 40px 20px;
+  font-size: 16px;
+}
+
+.loading-spinner {
+  text-align: center;
+  padding: 40px;
+  color: #1976d2;
+  font-weight: 600;
+}
+
+.error-message {
+  padding: 12px;
+  background: #ffebee;
+  border: 1px solid #e53935;
+  border-radius: 4px;
+  color: #b71c1c;
+  margin-bottom: 16px;
+}

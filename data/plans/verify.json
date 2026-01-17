@@ -1,0 +1,28 @@
+{
+  "project": "verify",
+  "requirements": "Create 2 tasks: echo hello and list files",
+  "tasks": [
+    {
+      "id": "T1",
+      "title": "echo hello",
+      "points": 1,
+      "status": "todo",
+      "verify": [
+        "Run command: echo hello",
+        "Confirm output contains: hello"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "T2",
+      "title": "list files",
+      "points": 2,
+      "status": "todo",
+      "verify": [
+        "Run command: ls (or dir on Windows)",
+        "Confirm output lists files in the current directory"
+      ],
+      "notes": ""
+    }
+  ]
+}

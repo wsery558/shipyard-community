@@ -1,0 +1,14 @@
+{
+  "project": "agent-dashboard",
+  "requirements": "Create a simple test plan with 2 tasks: 1) List files (safe), 2) Clean tmp (dangerous)",
+  "tasks": [
+    {
+      "id": "create_a_simple_test_plan_with_0",
+      "title": "Create a simple test plan with 2 tasks: 1) List files (safe), 2) Clean tmp (dangerous)",
+      "points": 10,
+      "status": "done",
+      "verify": [],
+      "notes": "\nStub: done"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "project": "example-project",
+  "requirements": "Example requirements",
+  "tasks": [
+    {
+      "id": "task_1",
+      "title": "Example task",
+      "points": 3,
+      "status": "todo",
+      "verify": ["pnpm test"],
+      "notes": ""
+    }
+  ]
+}

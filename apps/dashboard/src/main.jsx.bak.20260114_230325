@@ -1,0 +1,269 @@
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import { createRoot } from "react-dom/client";
+import { Terminal } from "xterm";
+import "xterm/css/xterm.css";
+
+function money(n) {
+  if (!Number.isFinite(n)) return "0.00";
+  return n.toFixed(2);
+}
+
+function App() {
+  const termRef = useRef(null);
+  const term = useMemo(() => new Terminal({ convertEol: true, fontSize: 12 }), []);
+  const [ws, setWs] = useState(null);
+
+  const [projects, setProjects] = useState([]);
+  const [activeProjectId, setActiveProjectId] = useState("");
+  const [models, setModels] = useState({ engineer: "", pm: "" });
+  const [fx, setFx] = useState(32);
+
+  const [usage, setUsage] = useState({ cost_usd: 0, cost_twd: 0, input_tokens: 0, output_tokens: 0, total_tokens: 0 });
+
+  const [progress, setProgress] = useState({ total: 28, current: "Agent API 串接", currentPct: 35 });
+
+  const [engineerPrompt, setEngineerPrompt] = useState("請根據 terminal 輸出，提出下一步最小可驗證的修復命令（bash）。");
+  const [engineerResult, setEngineerResult] = useState(null);
+  const [engineerErr, setEngineerErr] = useState("");
+
+  const [pmPrompt, setPmPrompt] = useState("把目前的 MVP 里程碑轉成可驗收條款、任務清單，並更新進度。");
+  const [pmResult, setPmResult] = useState(null);
+  const [pmErr, setPmErr] = useState("");
+
+  const [tail, setTail] = useState("");
+  const tailBuf = useRef([]);
+
+  useEffect(() => {
+    term.open(termRef.current);
+    term.write("Connecting...\r\n");
+
+    const socket = new WebSocket(`ws://${location.host}`);
+    socket.onopen = () => term.write("WS connected\r\n");
+
+    socket.onmessage = (ev) => {
+      const msg = JSON.parse(ev.data);
+
+      if (msg.type === "projects:list") {
+        setProjects(msg.projects || []);
+        setModels({ engineer: msg.engineer_model || "", pm: msg.pm_model || "" });
+        setFx(msg.usd_to_twd || 32);
+        return;
+      }
+      if (msg.type === "project:active") {
+        setActiveProjectId(msg.projectId);
+        return;
+      }
+      if (msg.type === "usage:summary") {
+        if (msg.summary) setUsage(msg.summary);
+        return;
+      }
+      if (msg.type === "term:data") {
+        term.write(msg.data);
+
+        // keep a tail buffer for Engineer
+        const lines = String(msg.data).split(/\r?\n/);
+        for (const ln of lines) {
+          if (!ln) continue;
+          tailBuf.current.push(ln);
+          if (tailBuf.current.length > 180) tailBuf.current.shift();
+        }
+        setTail(tailBuf.current.join("\n"));
+        return;
+      }
+      if (msg.type === "engineer:result") {
+        if (msg.error) {
+          setEngineerErr(msg.error);
+          return;
+        }
+        setEngineerErr("");
+        setEngineerResult(msg.data || null);
+        return;
+      }
+      if (msg.type === "pm:result") {
+        if (msg.error) {
+          setPmErr(msg.error);
+          return;
+        }
+        setPmErr("");
+        setPmResult(msg.data || null);
+
+        // optional: auto update progress UI
+        if (msg.data) {
+          setProgress({
+            total: Number(msg.data.progress_total ?? progress.total),
+            current: msg.data.progress_current ?? progress.current,
+            currentPct: Number(msg.data.progress_current_pct ?? progress.currentPct),
+          });
+        }
+        return;
+      }
+    };
+
+    socket.onclose = () => term.write("\r\nWS closed\r\n");
+    setWs(socket);
+
+    term.onData((data) => {
+      socket.readyState === 1 && socket.send(JSON.stringify({ type: "term:write", data }));
+    });
+
+    return () => socket.close();
+  }, []);
+
+  const setProject = (pid) => {
+    setActiveProjectId(pid);
+    setEngineerResult(null);
+    setPmResult(null);
+    tailBuf.current = [];
+    setTail("");
+    if (ws && ws.readyState === 1) ws.send(JSON.stringify({ type: "project:set", projectId: pid }));
+  };
+
+  const askEngineer = () => {
+    if (!ws || ws.readyState !== 1) return;
+    setEngineerErr("");
+    setEngineerResult(null);
+    ws.send(JSON.stringify({ type: "engineer:ask", prompt: engineerPrompt, tail }));
+  };
+
+  const approveAndRun = () => {
+    if (!ws || ws.readyState !== 1) return;
+    const bash = engineerResult?.bash || "";
+    if (!bash) return;
+    ws.send(JSON.stringify({ type: "term:write", data: bash.trim() + "\n" }));
+  };
+
+  const askPM = () => {
+    if (!ws || ws.readyState !== 1) return;
+    setPmErr("");
+    setPmResult(null);
+    ws.send(JSON.stringify({ type: "pm:ask", prompt: pmPrompt }));
+  };
+
+  const activeProjectName = projects.find(p => p.id === activeProjectId)?.name || activeProjectId || "—";
+
+  return (
+    <div style={{ height: "100vh", display: "grid", gridTemplateRows: "56px 1fr", background: "#0b0f14", color: "#e6edf3" }}>
+      <div style={{ display: "flex", alignItems: "center", padding: "0 16px", borderBottom: "1px solid #1f2a37", gap: 14 }}>
+        <div style={{ fontWeight: 700 }}>Agent Dashboard</div>
+
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <span style={{ opacity: 0.85 }}>Project</span>
+          <select
+            value={activeProjectId}
+            onChange={(e) => setProject(e.target.value)}
+            style={{ background: "#0b0f14", color: "#e6edf3", border: "1px solid #1f2a37", borderRadius: 8, padding: "6px 8px" }}
+          >
+            {projects.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
+          </select>
+        </div>
+
+        <div style={{ opacity: 0.85 }}>
+          總體進度：{progress.total}%　｜　目前進行：{progress.current} {progress.currentPct}%
+        </div>
+
+        <div style={{ marginLeft: "auto", display: "flex", gap: 16, opacity: 0.9 }}>
+          <div>
+            <div style={{ fontSize: 12, opacity: 0.8 }}>Models</div>
+            <div style={{ fontSize: 12 }}>Eng: {models.engineer} / PM: {models.pm}</div>
+          </div>
+          <div>
+            <div style={{ fontSize: 12, opacity: 0.8 }}>Budget ({activeProjectName})</div>
+            <div style={{ fontSize: 12 }}>${money(usage.cost_usd)} ≈ NT${money(usage.cost_twd)} (fx {fx})</div>
+          </div>
+        </div>
+      </div>
+
+      <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gridTemplateRows: "1fr 1fr", gap: 12, padding: 12 }}>
+        <div style={{ gridRow: "1 / span 2", border: "1px solid #1f2a37", borderRadius: 12, overflow: "hidden" }}>
+          <div style={{ padding: 10, borderBottom: "1px solid #1f2a37", fontWeight: 700 }}>Terminal（WSL）</div>
+          <div ref={termRef} style={{ height: "calc(100% - 42px)" }} />
+        </div>
+
+        <div style={{ border: "1px solid #1f2a37", borderRadius: 12, overflow: "hidden", display: "flex", flexDirection: "column" }}>
+          <div style={{ padding: 10, borderBottom: "1px solid #1f2a37", fontWeight: 700 }}>Engineer（API）</div>
+
+          <div style={{ padding: 10, borderBottom: "1px solid #1f2a37" }}>
+            <div style={{ fontSize: 12, opacity: 0.8, marginBottom: 6 }}>請根據 terminal 輸出，提出下一步最小可驗證的修復命令（bash）。</div>
+            <textarea value={engineerPrompt} onChange={(e)=>setEngineerPrompt(e.target.value)}
+              style={{ width: "100%", height: 64, background: "#0b0f14", color:"#e6edf3", border: "1px solid #1f2a37", borderRadius: 8, padding: 10, outline: "none" }} />
+            <button onClick={askEngineer} style={{ marginTop: 10, width: "100%", padding: 10, background:"#1f6feb", color:"white", border:"none", cursor:"pointer", borderRadius: 10 }}>
+              Ask Engineer
+            </button>
+            {engineerErr ? <div style={{ color: "#ff7b72", fontSize: 12, marginTop: 6 }}>{engineerErr}</div> : null}
+          </div>
+
+          <div style={{ flex: 1, padding: 10, overflow: "auto" }}>
+            {!engineerResult ? (
+              <div style={{ opacity: 0.65 }}>尚未生成</div>
+            ) : (
+              <>
+                <div style={{ fontWeight: 700 }}>{engineerResult.title || "Result"}</div>
+                <div style={{ opacity: 0.85, marginTop: 6, whiteSpace: "pre-wrap" }}>{engineerResult.rationale}</div>
+
+                {engineerResult.kind === "bash" ? (
+                  <>
+                    <div style={{ marginTop: 10, fontSize: 12, opacity: 0.8 }}>bash</div>
+                    <pre style={{ background:"#0a0f16", border:"1px solid #1f2a37", borderRadius: 10, padding: 10, whiteSpace: "pre-wrap" }}>
+                      {engineerResult.bash}
+                    </pre>
+
+                    <button
+                      onClick={approveAndRun}
+                      style={{ padding: 10, background: engineerResult.requires_approval ? "#2ea043" : "#2ea043", color: "white", border: "none", cursor: "pointer", borderRadius: 10 }}
+                    >
+                      Approve & Run
+                    </button>
+
+                    {engineerResult.risk ? <div style={{ fontSize: 12, opacity: 0.8, marginTop: 6 }}>risk: {engineerResult.risk} {engineerResult.requires_approval ? "(approval required)" : ""}</div> : null}
+                  </>
+                ) : engineerResult.kind === "patch" ? (
+                  <>
+                    <div style={{ marginTop: 10, fontSize: 12, opacity: 0.8 }}>patch (preview)</div>
+                    <pre style={{ background:"#0a0f16", border:"1px solid #1f2a37", borderRadius: 10, padding: 10, whiteSpace: "pre-wrap" }}>
+                      {engineerResult.patch}
+                    </pre>
+                    <div style={{ fontSize: 12, opacity: 0.8 }}>（下一版我們加：Approve & Apply Patch）</div>
+                  </>
+                ) : (
+                  <div style={{ marginTop: 10, opacity: 0.9, whiteSpace: "pre-wrap" }}>{engineerResult.bash || engineerResult.patch || ""}</div>
+                )}
+              </>
+            )}
+          </div>
+        </div>
+
+        <div style={{ border: "1px solid #1f2a37", borderRadius: 12, overflow: "hidden", display: "flex", flexDirection: "column" }}>
+          <div style={{ padding: 10, borderBottom: "1px solid #1f2a37", fontWeight: 700 }}>PM（API）</div>
+
+          <div style={{ padding: 10, borderBottom: "1px solid #1f2a37" }}>
+            <textarea value={pmPrompt} onChange={(e)=>setPmPrompt(e.target.value)}
+              style={{ width: "100%", height: 64, background: "#0b0f14", color:"#e6edf3", border: "1px solid #1f2a37", borderRadius: 8, padding: 10, outline: "none" }} />
+            <button onClick={askPM} style={{ marginTop: 10, width: "100%", padding: 10, background:"#2ea043", color:"white", border:"none", cursor:"pointer", borderRadius: 10 }}>
+              Ask PM
+            </button>
+            {pmErr ? <div style={{ color: "#ff7b72", fontSize: 12, marginTop: 6 }}>{pmErr}</div> : null}
+          </div>
+
+          <div style={{ flex: 1, padding: 10, overflow: "auto" }}>
+            {!pmResult ? (
+              <div style={{ opacity: 0.65 }}>尚未生成</div>
+            ) : (
+              <>
+                <div style={{ fontWeight: 700 }}>Summary</div>
+                <div style={{ whiteSpace: "pre-wrap", opacity: 0.9 }}>{pmResult.summary}</div>
+
+                <div style={{ fontWeight: 700, marginTop: 10 }}>Acceptance</div>
+                <div style={{ whiteSpace: "pre-wrap", opacity: 0.9 }}>{pmResult.acceptance}</div>
+
+                <div style={{ fontWeight: 700, marginTop: 10 }}>Tasks</div>
+                <div style={{ whiteSpace: "pre-wrap", opacity: 0.9 }}>{pmResult.tasks}</div>
+              </>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+createRoot(document.getElementById("root")).render(<App />);

@@ -1,0 +1,14 @@
+{
+  "projectId": "danger",
+  "tasks": [
+    {
+      "id": "D1",
+      "title": "Dangerous remove",
+      "points": 5,
+      "status": "blocked",
+      "bash": "rm -rf /tmp/agent-dashboard-danger-test",
+      "verify": [],
+      "notes": "\nPM did not mark done"
+    }
+  ]
+}

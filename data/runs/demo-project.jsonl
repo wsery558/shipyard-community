@@ -1,0 +1,11 @@
+{"ts":"2026-01-16T02:30:00.000Z","project":"demo-project","runSessionId":"demo_run_001","type":"RUN_STARTED"}
+{"ts":"2026-01-16T02:30:05.000Z","project":"demo-project","runSessionId":"demo_run_001","type":"TASK_STARTED","taskId":"task1","taskTitle":"Run tests"}
+{"ts":"2026-01-16T02:30:06.000Z","project":"demo-project","runSessionId":"demo_run_001","type":"COMMAND_PROPOSED","taskId":"task1","taskTitle":"Run tests","bash":"node --test test/*.test.mjs","summary":"Execute test suite"}
+{"ts":"2026-01-16T02:30:08.000Z","project":"demo-project","runSessionId":"demo_run_001","type":"COMMAND_EXECUTED","taskId":"task1","taskTitle":"Run tests","bash":"node --test test/*.test.mjs","exitCode":0,"stdout":"3 tests passed"}
+{"ts":"2026-01-16T02:30:09.000Z","project":"demo-project","runSessionId":"demo_run_001","type":"TASK_FINISHED","taskId":"task1","taskTitle":"Run tests","status":"done"}
+{"ts":"2026-01-16T02:30:15.000Z","project":"demo-project","runSessionId":"demo_run_001","type":"TASK_STARTED","taskId":"task2","taskTitle":"Deploy to preview"}
+{"ts":"2026-01-16T02:30:16.000Z","project":"demo-project","runSessionId":"demo_run_001","type":"COMMAND_PROPOSED","taskId":"task2","taskTitle":"Deploy to preview","bash":"node scripts/demo_deploy.mjs","summary":"Deploy application"}
+{"ts":"2026-01-16T02:30:18.000Z","project":"demo-project","runSessionId":"demo_run_001","type":"COMMAND_EXECUTED","taskId":"task2","taskTitle":"Deploy to preview","bash":"node scripts/demo_deploy.mjs","exitCode":0,"stdout":"Deploy successful"}
+{"ts":"2026-01-16T02:30:19.000Z","project":"demo-project","runSessionId":"demo_run_001","type":"TASK_FINISHED","taskId":"task2","taskTitle":"Deploy to preview","status":"done"}
+{"ts":"2026-01-16T02:30:20.000Z","project":"demo-project","runSessionId":"demo_run_001","type":"COST_UPDATED","calls":10,"tokens":500,"twd":3.50}
+{"ts":"2026-01-16T02:30:21.000Z","project":"demo-project","runSessionId":"demo_run_001","type":"RUN_STOPPED","reason":"completed"}

@@ -1,0 +1,246 @@
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import { createRoot } from "react-dom/client";
+import { Terminal } from "xterm";
+import "xterm/css/xterm.css";
+
+// UI guard: never call .map on non-array
+const asArray = (v) => (Array.isArray(v) ? v : []);
+
+function safeStringify(x) {
+  try {
+    if (typeof x === "string") return x;
+    return JSON.stringify(x, null, 2);
+  } catch {
+    return String(x);
+  }
+}
+
+async function fetchProjects() {
+  // 走 server.mjs 新增的 endpoint
+  const r = await fetch("/api/projects");
+  if (!r.ok) throw new Error(`projects http ${r.status}`);
+  const j = await r.json();
+  if (!j.ok) throw new Error(j.error || "projects not ok");
+  return j.projects || [];
+}
+
+function App() {
+  const termRef = useRef(null);
+  const term = useMemo(() => new Terminal({ convertEol: true, fontSize: 12 }), []);
+  const [ws, setWs] = 
+  // loading state (avoid white-screen if referenced)
+  const [engineerLoading, setEngineerLoading] = useState(false);
+useState(null);
+
+  const [projects, setProjects] = useState([]);
+  const [projectId, setProjectId] = useState("");
+  const [progress, setProgress] = useState({ total: 28, current: "DB-3 爬蟲搭建", currentPct: 35 });
+
+  // Engineer
+  const [engineerPrompt, setEngineerPrompt] = useState("列出這個資料夾有哪些檔案（bash）");
+  const [engineerOut, setEngineerOut] = useState("");
+  const [engineerBusy, setEngineerBusy] = useState(false);
+
+  // PM
+  const [pmPrompt, setPmPrompt] = useState("把目前進度設定成：總體 28%，目前 DB-3 爬蟲搭建 35%");
+  const [pmOut, setPmOut] = useState("");
+  const [pmBusy, setPmBusy] = useState(false);
+
+  // load projects
+  useEffect(() => {
+    fetchProjects()
+      .then((arr) => {
+        setProjects(arr);
+        if (arr.length && !projectId) setProjectId(arr[0].id || arr[0].key || arr[0].name || "");
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  }, []);
+
+  useEffect(() => {
+    term.open(termRef.current);
+    term.write("Connecting...\r\n");
+
+    const socket = new WebSocket(`ws://${location.host}`);
+
+    socket.onopen = () => term.write("WS connected\r\n");
+
+    socket.onmessage = (ev) => {
+      let msg;
+      try {
+        msg = JSON.parse(ev.data);
+      } catch (e) {
+        console.error("WS parse error:", e, ev.data);
+        return;
+      }
+
+      try {
+        if (msg.type === "term:data") {
+          term.write(msg.data);
+          return;
+        }
+
+        if (msg.type === "engineer:result") {
+          setEngineerBusy(false);
+          if (msg.error) {
+            setEngineerOut(`ERROR: ${msg.error}\n${msg.raw ? safeStringify(msg.raw) : ""}`);
+          } else {
+            setEngineerOut(safeStringify(msg.data ?? msg));
+          }
+          return;
+        }
+
+        if (msg.type === "pm:result") {
+          setPmBusy(false);
+          if (msg.error) {
+            setPmOut(`ERROR: ${msg.error}\n${msg.raw ? safeStringify(msg.raw) : ""}`);
+          } else {
+            const obj = msg.data ?? msg;
+            setPmOut(safeStringify(obj));
+
+            // 若 PM 有回傳進度欄位就更新（不要求一定存在）
+            const totalPct = Number(obj?.totalPct);
+            const currentPct = Number(obj?.currentPct);
+            const current = typeof obj?.current === "string" ? obj.current : progress.current;
+            setProgress((p) => ({
+              total: Number.isFinite(totalPct) ? totalPct : p.total,
+              current,
+              currentPct: Number.isFinite(currentPct) ? currentPct : p.currentPct,
+            }));
+          }
+          return;
+        }
+      } catch (e) {
+        console.error("UI handler error:", e);
+        term.write(`\r\n[UI handler error] ${String(e?.message || e)}\r\n`);
+      }
+    };
+
+    socket.onclose = () => term.write("\r\nWS closed\r\n");
+    setWs(socket);
+
+    term.onData((data) => {
+      if (socket.readyState === 1) socket.send(JSON.stringify({ type: "term:write", data }));
+    });
+
+    return () => socket.close();
+  }, []);
+
+  const runEngineer = () => {
+    setEngineerLoading(true);
+    if (!ws || ws.readyState !== 1) return;
+    setEngineerBusy(true);
+    setEngineerOut("");
+    // UI 用 engineer:run（server 端已 normalize）
+    ws.send(JSON.stringify({ type: "engineer:run", projectId, prompt: engineerPrompt, state: progress }));
+  };
+
+  const askPM = () => {
+    setPmLoading(true);
+    if (!ws || ws.readyState !== 1) return;
+    setPmBusy(true);
+    setPmOut("");
+    ws.send(JSON.stringify({ type: "pm:run", projectId, prompt: pmPrompt, state: progress }));
+  };
+
+  return (
+    <div style={{ height: "100vh", display: "grid", gridTemplateRows: "56px 1fr", background: "#0b0f14", color: "#e6edf3" }}>
+      <div style={{ display: "flex", alignItems: "center", padding: "0 16px", borderBottom: "1px solid #1f2a37", gap: 12 }}>
+        <div style={{ fontWeight: 700 }}>Agent Dashboard</div>
+
+        <div style={{ opacity: 0.9 }}>
+          總體進度：{progress.total}%　｜　目前進行：{progress.current} {progress.currentPct}%
+        </div>
+
+        <div style={{ marginLeft: 16, display: "flex", alignItems: "center", gap: 8 }}>
+          <span style={{ fontSize: 12, opacity: 0.85 }}>Project</span>
+          <select
+            value={projectId}
+            onChange={(e) => setProjectId(e.target.value)}
+            style={{ background: "#0b0f14", color: "#e6edf3", border: "1px solid #1f2a37", borderRadius: 8, padding: "6px 8px" }}
+          >
+            {projects.length ? null : <option value="">(no projects)</option>}
+            {asArray(projects).map((p) => {
+              const id = p.id || p.key || p.name;
+              const label = p.name || p.title || id;
+              return (
+                <option key={id} value={id}>
+                  {label}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+
+        <div style={{ marginLeft: "auto", opacity: 0.7, fontSize: 12 }}>
+          {engineerBusy ? "Engineer generating…" : ""}{engineerBusy && pmBusy ? " | " : ""}{pmBusy ? "PM generating…" : ""}
+        </div>
+      </div>
+
+      <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gridTemplateRows: "1fr 1fr", gap: 12, padding: 12 }}>
+        {/* Terminal */}
+        <div style={{ gridRow: "1 / span 2", border: "1px solid #1f2a37", borderRadius: 12, overflow: "hidden" }}>
+          <div style={{ padding: 10, borderBottom: "1px solid #1f2a37", fontWeight: 700 }}>Terminal (WSL)</div>
+          <div ref={termRef} style={{ height: "calc(100% - 42px)" }} />
+        </div>
+
+        {/* Engineer */}
+        <div style={{ border: "1px solid #1f2a37", borderRadius: 12, overflow: "hidden", display: "flex", flexDirection: "column" }}>
+          <div style={{ padding: 10, borderBottom: "1px solid #1f2a37", fontWeight: 700, display: "flex", alignItems: "center", gap: 10 }}>
+            <span>Engineer</span>
+            {engineerBusy ? <span style={{ fontSize: 12, opacity: 0.8 }}>generating…</span> : null}
+          </div>
+
+          <textarea
+            value={engineerPrompt}
+            onChange={(e) => setEngineerPrompt(e.target.value)}
+            placeholder="描述你要 Engineer 做什麼（它會回 JSON：bash/patch）"
+            style={{ height: 110, background: "#0b0f14", color: "#e6edf3", border: "none", padding: 10, outline: "none" }}
+          />
+
+          <button
+            onClick={runEngineer}
+            disabled={engineerBusy}
+            style={{ padding: 10, background: engineerBusy ? "#234" : "#1f6feb", color: "white", border: "none", cursor: engineerBusy ? "not-allowed" : "pointer" }}
+          >{engineerLoading ? 'Generating…' : 'Run → Terminal'}</button>
+
+          <div style={{ flex: 1, borderTop: "1px solid #1f2a37", padding: 10, overflow: "auto" }}>
+            <div style={{ fontSize: 12, opacity: 0.8, marginBottom: 6 }}>Engineer result (JSON)</div>
+            <pre style={{ margin: 0, whiteSpace: "pre-wrap", wordBreak: "break-word" }}>{engineerOut || "(empty)"}</pre>
+          </div>
+        </div>
+
+        {/* PM */}
+        <div style={{ border: "1px solid #1f2a37", borderRadius: 12, overflow: "hidden", display: "flex", flexDirection: "column" }}>
+          <div style={{ padding: 10, borderBottom: "1px solid #1f2a37", fontWeight: 700, display: "flex", alignItems: "center", gap: 10 }}>
+            <span>PM</span>
+            {pmBusy ? <span style={{ fontSize: 12, opacity: 0.8 }}>generating…</span> : null}
+          </div>
+
+          <textarea
+            value={pmPrompt}
+            onChange={(e) => setPmPrompt(e.target.value)}
+            placeholder="你對 PM 說需求/調整方向/更新進度"
+            style={{ height: 110, background: "#0b0f14", color: "#e6edf3", border: "none", padding: 10, outline: "none" }}
+          />
+
+          <button
+            onClick={askPM}
+            disabled={pmBusy}
+            style={{ padding: 10, background: pmBusy ? "#234" : "#2ea043", color: "white", border: "none", cursor: pmBusy ? "not-allowed" : "pointer" }}
+          >
+            {pmBusy ? "Generating…" : "Ask PM"}
+          </button>
+
+          <div style={{ flex: 1, borderTop: "1px solid #1f2a37", padding: 10, overflow: "auto" }}>
+            <div style={{ fontSize: 12, opacity: 0.8, marginBottom: 6 }}>PM result (JSON)</div>
+            <pre style={{ margin: 0, whiteSpace: "pre-wrap", wordBreak: "break-word" }}>{pmOut || "(empty)"}</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+createRoot(document.getElementById("root")).render(<App />);

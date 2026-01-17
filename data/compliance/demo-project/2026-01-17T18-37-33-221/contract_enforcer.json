@@ -1,0 +1,17 @@
+{
+  "expectedVersion": "1.0",
+  "expectedHash": null,
+  "pconstPath": "PCONST.md",
+  "missingFields": [
+    "required_events_missing"
+  ],
+  "actualVersion": "1.0",
+  "actualHash": "591e6974a182d5b31bf6eb7d59d9da4a282c0ae22f7ecef87a9ddee2cc341817",
+  "requiredEvents": [
+    "compliance-check"
+  ],
+  "missingEvents": [
+    "compliance-check"
+  ],
+  "presentEvents": []
+}

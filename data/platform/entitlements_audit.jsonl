@@ -1,0 +1,6 @@
+{"timestamp":"2025-01-01T00:00:00Z","action":"grant","user_id":"demo-user-001","feature":"compliance.admin","actor":"system","reason":"Initial enterprise onboarding"}
+{"timestamp":"2025-01-01T00:01:00Z","action":"grant","user_id":"demo-user-001","feature":"reports.export","actor":"system","reason":"Initial enterprise onboarding"}
+{"timestamp":"2025-06-01T00:00:00Z","action":"grant","user_id":"test-user-001","feature":"basic.dashboard","actor":"admin-001","reason":"Standard plan activation"}
+{"timestamp":"2025-08-15T00:00:00Z","action":"grant","user_id":"test-user-002","feature":"basic.dashboard","actor":"admin-001","reason":"Standard plan activation"}
+{"timestamp":"2026-01-17T16:42:28.240Z","action":"grant","user_id":"test-user-001","feature":"test.feature","actor":"test-suite","reason":"Test grant"}
+{"timestamp":"2026-01-17T16:42:28.241Z","action":"revoke","user_id":"test-user-002","feature":"basic.dashboard","actor":"test-suite","reason":"Test revoke"}

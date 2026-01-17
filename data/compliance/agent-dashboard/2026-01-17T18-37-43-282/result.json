@@ -1,0 +1,48 @@
+{
+  "checks": [
+    {
+      "name": "pnpm -s",
+      "status": "warn",
+      "reason": "Exit code: 1",
+      "evidencePath": "compliance/agent-dashboard/2026-01-17T18-37-43-282"
+    },
+    {
+      "name": "node -e",
+      "status": "pass",
+      "reason": "Command succeeded",
+      "evidencePath": "compliance/agent-dashboard/2026-01-17T18-37-43-282"
+    },
+    {
+      "name": "test -f",
+      "status": "pass",
+      "reason": "Command succeeded",
+      "evidencePath": "compliance/agent-dashboard/2026-01-17T18-37-43-282"
+    },
+    {
+      "name": "contract-enforcer",
+      "status": "partial",
+      "reason": "Missing required events",
+      "evidencePath": "compliance/agent-dashboard/2026-01-17T18-37-43-282",
+      "details": {
+        "expectedVersion": "1.0",
+        "expectedHash": null,
+        "pconstPath": "PCONST.md",
+        "missingFields": [
+          "required_events_missing"
+        ],
+        "actualVersion": "1.0",
+        "actualHash": "591e6974a182d5b31bf6eb7d59d9da4a282c0ae22f7ecef87a9ddee2cc341817",
+        "requiredEvents": [
+          "smoke-pass",
+          "server-ready"
+        ],
+        "missingEvents": [
+          "smoke-pass",
+          "server-ready"
+        ],
+        "presentEvents": [],
+        "evidenceFile": "/home/ken/code/agent-dashboard/data/compliance/agent-dashboard/2026-01-17T18-37-43-282/contract_enforcer.json"
+      }
+    }
+  ]
+}

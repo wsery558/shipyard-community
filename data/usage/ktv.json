@@ -1,0 +1,20 @@
+{
+  "projectId": "ktv",
+  "totals": {
+    "gpt-5.1-codex-mini": {
+      "input_tokens": 225,
+      "output_tokens": 131,
+      "total_tokens": 356,
+      "cost_usd": 0.00031825,
+      "cost_twd": 0.010184
+    },
+    "gpt-5-mini": {
+      "input_tokens": 313,
+      "output_tokens": 8628,
+      "total_tokens": 8941,
+      "cost_usd": 0.017334250000000002,
+      "cost_twd": 0.5546960000000001
+    }
+  },
+  "updatedAt": "2026-01-14T14:59:59.609Z"
+}

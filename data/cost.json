@@ -1,0 +1,96 @@
+{
+  "default": {
+    "models": {
+      "gpt-5-mini": {
+        "input_tokens": 498,
+        "output_tokens": 2273,
+        "total_tokens": 2771
+      },
+      "gpt-5.1-codex-mini": {
+        "input_tokens": 221,
+        "output_tokens": 958,
+        "total_tokens": 1179
+      }
+    },
+    "total": {
+      "input_tokens": 719,
+      "output_tokens": 3231,
+      "total_tokens": 3950
+    }
+  },
+  "verify": {
+    "models": {
+      "gpt-5-mini": {
+        "input_tokens": 138,
+        "output_tokens": 543,
+        "total_tokens": 681
+      }
+    },
+    "total": {
+      "input_tokens": 138,
+      "output_tokens": 543,
+      "total_tokens": 681
+    }
+  },
+  "danger": {
+    "models": {
+      "gpt-5.1-codex-mini": {
+        "input_tokens": 94,
+        "output_tokens": 342,
+        "total_tokens": 436
+      },
+      "gpt-5-mini": {
+        "input_tokens": 104,
+        "output_tokens": 238,
+        "total_tokens": 342
+      }
+    },
+    "total": {
+      "input_tokens": 198,
+      "output_tokens": 580,
+      "total_tokens": 778
+    }
+  },
+  "agent-dashboard": {
+    "models": {
+      "gpt-5-mini": {
+        "input_tokens": 1509,
+        "output_tokens": 7479,
+        "total_tokens": 8988,
+        "calls": 757
+      },
+      "gpt-5.1-codex-mini": {
+        "input_tokens": 210,
+        "output_tokens": 44,
+        "total_tokens": 254,
+        "calls": 278
+      }
+    },
+    "total": {
+      "input_tokens": 1719,
+      "output_tokens": 7523,
+      "total_tokens": 9242,
+      "calls": 1035,
+      "estimated_usd": 0.01547575,
+      "estimated_twd": 0.495224
+    }
+  },
+  "demo-project": {
+    "models": {
+      "gpt-5-mini": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0,
+        "calls": 1
+      }
+    },
+    "total": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "total_tokens": 0,
+      "calls": 1,
+      "estimated_usd": 0,
+      "estimated_twd": 0
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "expectedVersion": null,
+  "expectedHash": null,
+  "pconstPath": "/home/ken/code/agent-dashboard/PCONST.md",
+  "missingFields": [],
+  "actualVersion": "1.0",
+  "actualHash": "591e6974a182d5b31bf6eb7d59d9da4a282c0ae22f7ecef87a9ddee2cc341817",
+  "requiredEvents": [],
+  "missingEvents": [],
+  "presentEvents": []
+}

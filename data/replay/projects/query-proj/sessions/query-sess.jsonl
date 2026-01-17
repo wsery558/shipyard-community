@@ -1,0 +1,8 @@
+{"type":"session_start","timestamp":1736935200000,"projectId":"query-proj","sessionId":"query-sess","metadata":{"env":"test","mode":"smoke"}}
+{"type":"task_start","timestamp":1736935201000,"taskId":"task-1","taskName":"Create API endpoint","status":"running"}
+{"type":"command_executed","timestamp":1736935202000,"command":"npm test","status":"success","duration":5000,"output":"All tests passed"}
+{"type":"task_completed","timestamp":1736935208000,"taskId":"task-1","status":"success","result":{"linesAdded":145,"filesModified":2}}
+{"type":"task_start","timestamp":1736935209000,"taskId":"task-2","taskName":"Write tests","status":"running"}
+{"type":"command_executed","timestamp":1736935210000,"command":"npm test","status":"success","duration":3000,"output":"Test coverage: 92%"}
+{"type":"task_completed","timestamp":1736935214000,"taskId":"task-2","status":"success","result":{"testCount":24,"coverage":0.92}}
+{"type":"session_completed","timestamp":1736935215000,"projectId":"query-proj","sessionId":"query-sess","status":"success","stats":{"tasksCompleted":2,"eventsCount":8,"duration":15000}}

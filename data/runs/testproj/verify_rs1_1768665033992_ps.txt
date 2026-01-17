@@ -1,0 +1,119 @@
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.0  0.0  22084 11516 ?        Ss   00:50   0:04 /sbin/init
+root         2  0.0  0.0   3120  2048 ?        Sl   00:50   0:00 /init
+root         7  0.0  0.0   3152  1912 ?        Sl   00:50   0:00 plan9 --control-socket 7 --log-level 4 --server-fd 8 --pipe-fd 10 --log-truncate
+root        40  0.0  0.0  66828 12884 ?        S<s  00:50   0:03 /usr/lib/systemd/systemd-journald
+root        86  0.0  0.0  25156  6272 ?        Ss   00:50   0:03 /usr/lib/systemd/systemd-udevd
+systemd+   148  0.0  0.0  21456 11520 ?        Ss   00:50   0:00 /usr/lib/systemd/systemd-resolved
+systemd+   149  0.0  0.0  91024  6656 ?        Ssl  00:50   0:00 /usr/lib/systemd/systemd-timesyncd
+root       155  0.0  0.0   4236  2816 ?        Ss   00:50   0:00 /usr/sbin/cron -f -P
+message+   156  0.0  0.0   9740  4736 ?        Ss   00:50   0:02 @dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+root       163  0.0  0.0  18148  7552 ?        Ss   00:50   0:00 /usr/lib/systemd/systemd-logind
+root       165  0.0  0.0 2052176 10968 ?       Ssl  00:50   0:01 /usr/libexec/wsl-pro-service -vv
+root       168  0.0  0.0   3160  2048 ?        Ss   00:50   0:00 /sbin/agetty -o -p -- \u --noclear --keep-baud - 115200,38400,9600 vt220
+syslog     174  0.0  0.0 222508  5376 ?        Ssl  00:50   0:00 /usr/sbin/rsyslogd -n -iNONE
+root       181  0.0  0.0   3116  1920 tty1     Ss+  00:50   0:00 /sbin/agetty -o -p -- \u --noclear - linux
+root       191  0.0  0.1 107028 17788 ?        Ssl  00:50   0:00 /usr/bin/python3 /usr/share/unattended-upgrades/unattended-upgrade-shutdown --wait-for-signal
+root       274  0.0  0.0      0     0 ?        Zs   00:50   0:00 [SessionLeader] <defunct>
+root       279  0.0  0.0   6672  3968 pts/1    Ss   00:50   0:00 /bin/login -f
+root       326  0.0  0.0  20308 10112 ?        Ss   00:50   0:00 /usr/lib/systemd/systemd --user
+root       327  0.0  0.0  21156  3372 ?        S    00:50   0:00 (sd-pam)
+root       352  0.0  0.0   6072  4480 pts/1    S+   00:50   0:00 -bash
+root       436  0.0  0.0   6824  3968 pts/3    Ss   00:50   0:00 /bin/login -f
+ken        468  0.0  0.0  20320 10112 ?        Ss   00:50   0:00 /usr/lib/systemd/systemd --user
+ken        471  0.0  0.0  21148  3388 ?        S    00:50   0:00 (sd-pam)
+ken        494  0.0  0.0   9876  8304 pts/3    S+   00:50   0:00 -bash
+root       946  0.0  0.0   3128   908 ?        Ss   00:50   0:00 /init
+root       947  0.0  0.0   3140  1168 ?        S    00:50   0:00 /init
+ken        948  0.0  0.0   2800  1664 pts/0    Ss+  00:50   0:00 sh
+root      1023  0.0  0.0   3144  1300 ?        S    00:50   0:00 /init
+root      1024  0.0  0.0 1250128 14056 pts/4   Ssl+ 00:50   0:05 /mnt/wsl/docker-desktop/docker-desktop-user-distro proxy --distro-name Ubuntu --docker-desktop-root /mnt/wsl/docker-desktop C:\Program Files\Docker\Docker\resources
+root      1190  0.0  0.0   3124   908 ?        Ss   00:51   0:00 /init
+root      1191  0.0  0.0   3140  1168 ?        S    00:51   0:00 /init
+ken       1192  0.0  0.0   2800  1664 pts/5    Ss+  00:51   0:00 sh -c "$VSCODE_WSL_EXT_LOCATION/scripts/wslServer.sh" 994fd12f8d3a5aa16f17d42c041e5809167e845a stable code-server .vscode-server --host=127.0.0.1 --port=0 --connection-token=1435120226-4215631830-4019273407-2147116286 --use-host-proxy --without-browser-env-var --disable-websocket-compression --accept-server-license-terms --telemetry-level=all
+ken       1193  0.0  0.0   2800  1792 pts/5    S+   00:51   0:00 sh /mnt/c/Users/USER/.vscode/extensions/ms-vscode-remote.remote-wsl-0.104.3/scripts/wslServer.sh 994fd12f8d3a5aa16f17d42c041e5809167e845a stable code-server .vscode-server --host=127.0.0.1 --port=0 --connection-token=1435120226-4215631830-4019273407-2147116286 --use-host-proxy --without-browser-env-var --disable-websocket-compression --accept-server-license-terms --telemetry-level=all
+ken       1199  0.0  0.0   2800  1792 pts/5    S+   00:51   0:00 sh /home/ken/.vscode-server/bin/994fd12f8d3a5aa16f17d42c041e5809167e845a/bin/code-server --host=127.0.0.1 --port=0 --connection-token=1435120226-4215631830-4019273407-2147116286 --use-host-proxy --without-browser-env-var --disable-websocket-compression --accept-server-license-terms --telemetry-level=all
+ken       1203  0.3  1.3 11939032 219572 pts/5 Sl+  00:51   4:24 /home/ken/.vscode-server/bin/994fd12f8d3a5aa16f17d42c041e5809167e845a/node /home/ken/.vscode-server/bin/994fd12f8d3a5aa16f17d42c041e5809167e845a/out/server-main.js --host=127.0.0.1 --port=0 --connection-token=1435120226-4215631830-4019273407-2147116286 --use-host-proxy --without-browser-env-var --disable-websocket-compression --accept-server-license-terms --telemetry-level=all
+ken       1366  0.0  0.3 1039132 51360 ?       Sl   13:16   0:01 node /home/ken/code/engineer-platform/services/api/node_modules/.bin/../tsx/dist/cli.mjs watch src/server.ts
+ken       1700  0.0  0.3 1031708 51564 ?       Sl   13:16   0:01 node /home/ken/code/engineer-platform/services/api/node_modules/.bin/../tsx/dist/cli.mjs watch src/server.ts
+ken       1800  0.1  0.6 1646688 96648 pts/5   Sl+  00:51   1:47 /home/ken/.vscode-server/bin/994fd12f8d3a5aa16f17d42c041e5809167e845a/node /home/ken/.vscode-server/bin/994fd12f8d3a5aa16f17d42c041e5809167e845a/out/bootstrap-fork --type=ptyHost --logsPath /home/ken/.vscode-server/data/logs/20260115T175623
+root      2373  0.0  0.0   3140  1168 ?        S    05:14   0:00 /init
+root      3173  0.0  0.0   3140  1168 ?        S    17:40   0:00 /init
+ken       3307  0.0  0.0  10028  3456 pts/15   Ss+  00:53   0:00 /bin/bash --init-file /home/ken/.vscode-server/bin/994fd12f8d3a5aa16f17d42c041e5809167e845a/out/vs/workbench/contrib/terminal/common/scripts/shellIntegration-bash.sh
+ken       3630  0.0  0.3 1039384 53256 ?       Sl   13:19   0:01 node /home/ken/code/engineer-platform/services/api/node_modules/.bin/../tsx/dist/cli.mjs watch src/server.ts
+ken       3945  0.0  0.3 1036828 53572 ?       Sl   13:19   0:01 node /home/ken/code/engineer-platform/services/api/node_modules/.bin/../tsx/dist/cli.mjs watch src/server.ts
+ken       4233  0.0  0.0  10028  3584 pts/19   Ss+  00:53   0:00 /bin/bash --init-file /home/ken/.vscode-server/bin/994fd12f8d3a5aa16f17d42c041e5809167e845a/out/vs/workbench/contrib/terminal/common/scripts/shellIntegration-bash.sh
+ken       5009  0.0  0.0  10028  8832 pts/23   Ss+  00:54   0:00 /bin/bash --init-file /home/ken/.vscode-server/bin/994fd12f8d3a5aa16f17d42c041e5809167e845a/out/vs/workbench/contrib/terminal/common/scripts/shellIntegration-bash.sh
+ken       5631  0.0  0.0   8444  2868 ?        Ss   05:18   0:00 ssh-agent -s
+ken       7111  0.0  0.3 1025200 54480 pts/37  Sl   19:43   0:00 /home/ken/.nvm/versions/node/v20.19.6/bin/node /home/ken/code/agent-dashboard/test/pmStallDecision.test.mjs
+ken       7117  0.0  0.3 1024848 51024 pts/37  Sl   19:43   0:00 /home/ken/.nvm/versions/node/v20.19.6/bin/node /home/ken/code/agent-dashboard/test/ptyAbort.test.mjs
+ken       7179  0.0  0.3 1028980 60220 pts/37  Sl   19:43   0:00 /home/ken/.nvm/versions/node/v20.19.6/bin/node /home/ken/code/agent-dashboard/server.mjs
+ken       7201  0.0  0.3 1028512 59380 pts/37  Sl   19:43   0:00 /home/ken/.nvm/versions/node/v20.19.6/bin/node /home/ken/code/agent-dashboard/server.mjs
+root      7337  0.0  0.0   3124   768 ?        Ss   23:37   0:00 /init
+root      7338  0.0  0.0   3140   896 ?        S    23:37   0:00 /init
+ken       7343  0.0  0.0  10004  9216 pts/59   Ss+  23:37   0:00 -bash
+ken       9109  0.0  0.3 1111056 58972 pts/52  Sl   21:38   0:00 node /home/ken/code/agent-dashboard/server.mjs
+ken       9164  0.0  0.0  10028  8704 pts/26   Ss+  03:41   0:00 /bin/bash --init-file /home/ken/.vscode-server/bin/994fd12f8d3a5aa16f17d42c041e5809167e845a/out/vs/workbench/contrib/terminal/common/scripts/shellIntegration-bash.sh
+ken       9269  0.0  0.3 1039644 51896 ?       Sl   15:32   0:01 node /home/ken/code/engineer-platform/services/api/node_modules/.bin/../tsx/dist/cli.mjs watch src/server.ts
+root      9870  0.0  0.0   3128   908 ?        Ss   15:34   0:00 /init
+root      9872  0.0  0.0   3144  1172 ?        S    15:34   0:00 /init
+ken       9874  0.0  0.0   9980  8832 pts/33   Ss+  15:34   0:00 bash
+ken      10599  0.0  0.0  10544  9856 pts/34   Ss+  03:42   0:00 /bin/bash --init-file /home/ken/.vscode-server/bin/994fd12f8d3a5aa16f17d42c041e5809167e845a/out/vs/workbench/contrib/terminal/common/scripts/shellIntegration-bash.sh
+ken      10703  0.0  0.3 1046548 51864 ?       Sl   13:28   0:01 node /home/ken/code/engineer-platform/services/api/node_modules/.bin/../tsx/dist/cli.mjs watch src/server.ts
+ken      10859  0.0  0.3 1037332 50532 ?       Sl   17:49   0:00 node /home/ken/code/engineer-platform/services/api/node_modules/.bin/../tsx/dist/cli.mjs watch src/server.ts
+ken      11324  0.0  0.3 1038880 55636 ?       Sl   13:29   0:01 node /home/ken/code/engineer-platform/services/api/node_modules/.bin/../tsx/dist/cli.mjs watch src/server.ts
+ken      11640  0.0  0.3 1032476 52168 ?       Sl   13:29   0:01 node /home/ken/code/engineer-platform/services/api/node_modules/.bin/../tsx/dist/cli.mjs watch src/server.ts
+ken      12393  0.0  0.0  10028  9088 pts/17   Ss+  09:13   0:00 /bin/bash --init-file /home/ken/.vscode-server/bin/994fd12f8d3a5aa16f17d42c041e5809167e845a/out/vs/workbench/contrib/terminal/common/scripts/shellIntegration-bash.sh
+ken      14456  0.0  0.0  10028  9216 pts/50   Ss+  19:52   0:00 /bin/bash --init-file /home/ken/.vscode-server/bin/994fd12f8d3a5aa16f17d42c041e5809167e845a/out/vs/workbench/contrib/terminal/common/scripts/shellIntegration-bash.sh
+ken      14617  0.0  0.0  10028  7236 pts/50   T    19:52   0:00 /bin/bash --init-file /home/ken/.vscode-server/bin/994fd12f8d3a5aa16f17d42c041e5809167e845a/out/vs/workbench/contrib/terminal/common/scripts/shellIntegration-bash.sh
+ken      14618  0.0  0.3 1091860 54900 pts/50  Tl   19:52   0:00 npm run dev
+ken      14631  0.0  0.0   2804  1664 pts/50   T    19:52   0:00 sh -c vite --host 0.0.0.0 --port 5173
+ken      14632  0.0  0.4 11818396 75916 pts/50 Tl   19:52   0:00 node /home/ken/code/ktv-pwa/node_modules/.bin/vite --host 0.0.0.0 --port 5173
+ken      14646  0.0  0.0 720504 10496 pts/50   Tl   19:52   0:00 /home/ken/code/ktv-pwa/node_modules/@esbuild/linux-x64/bin/esbuild --service=0.21.5 --ping
+ken      17016  0.0  0.0  10028  9216 pts/53   Ss+  21:47   0:00 /bin/bash --init-file /home/ken/.vscode-server/bin/994fd12f8d3a5aa16f17d42c041e5809167e845a/out/vs/workbench/contrib/terminal/common/scripts/shellIntegration-bash.sh
+ken      17242  0.0  0.0   3136  1920 pts/44   S+   23:50   0:00 timeout 120 pnpm -s test
+ken      17243  0.0  0.0   4120  2176 pts/44   S+   23:50   0:00 grep --color=auto -E ^\[.*\] Passed:|^# tests|^# pass|^Passed:|Failed:
+ken      17244  0.0  0.0   3160  1792 pts/44   S+   23:50   0:00 tail -n 20
+ken      17245  0.6  0.7 1294964 121140 pts/44 Sl+  23:50   0:00 node /home/ken/.nvm/versions/node/v20.19.6/bin/pnpm -s test
+ken      17258  0.0  0.0   2808  1664 pts/44   S+   23:50   0:00 sh -c pnpm -s test:smoke && pnpm -s test:unit && pnpm -s test:regression
+ken      17640 77.2  0.7 1292912 119948 pts/44 Sl+  23:50   0:00 node /home/ken/.nvm/versions/node/v20.19.6/bin/pnpm -s test:unit
+ken      17651  0.0  0.0   2808  1664 pts/44   S+   23:50   0:00 sh -c node --test test/artifactManager.validation.test.mjs test/autoVerify.test.mjs test/autoVerifyFailure.test.mjs test/budget.test.mjs test/plan.test.mjs test/report-api.test.mjs test/report.test.mjs test/safety.test.mjs test/stallWatchdog.test.mjs
+ken      17652 40.0  0.2 993556 44416 pts/44   Rl+  23:50   0:00 node --test test/artifactManager.validation.test.mjs test/autoVerify.test.mjs test/autoVerifyFailure.test.mjs test/budget.test.mjs test/plan.test.mjs test/report-api.test.mjs test/report.test.mjs test/safety.test.mjs test/stallWatchdog.test.mjs
+ken      17658  100  0.3 1023940 50508 pts/44  Rl+  23:50   0:00 /home/ken/.nvm/versions/node/v20.19.6/bin/node /home/ken/code/agent-dashboard/test/artifactManager.validation.test.mjs
+ken      17665 66.6  0.2 958792 45952 pts/44   Sl+  23:50   0:00 /home/ken/.nvm/versions/node/v20.19.6/bin/node /home/ken/code/agent-dashboard/test/autoVerifyFailure.test.mjs
+ken      17692  100  0.2 726840 40448 pts/44   Rl+  23:50   0:00 /home/ken/.nvm/versions/node/v20.19.6/bin/node /home/ken/code/agent-dashboard/test/budget.test.mjs
+ken      17694  0.0  0.2 726584 36736 pts/44   Rl+  23:50   0:00 /home/ken/.nvm/versions/node/v20.19.6/bin/node /home/ken/code/agent-dashboard/test/plan.test.mjs
+ken      17695  0.0  0.1 725780 29952 pts/44   Rl+  23:50   0:00 /home/ken/.nvm/versions/node/v20.19.6/bin/node /home/ken/code/agent-dashboard/test/report-api.test.mjs
+ken      17702  0.0  0.2 726584 37632 pts/44   Rl+  23:50   0:00 /home/ken/.nvm/versions/node/v20.19.6/bin/node /home/ken/code/agent-dashboard/test/report.test.mjs
+ken      17707  0.0  0.0   2808  1664 pts/44   S+   23:50   0:00 /bin/sh -c ps aux
+ken      17708  0.0  0.0   8560  4480 pts/44   R+   23:50   0:00 ps aux
+ken      19073  0.0  0.0  10544  9728 pts/54   Ss+  21:49   0:00 /bin/bash --init-file /home/ken/.vscode-server/bin/994fd12f8d3a5aa16f17d42c041e5809167e845a/out/vs/workbench/contrib/terminal/common/scripts/shellIntegration-bash.sh
+ken      19929  0.0  0.4 1112212 64256 pts/37  Sl   19:57   0:00 node /home/ken/code/agent-dashboard/server.mjs
+ken      20404  0.0  0.3 1111032 59236 pts/54  Sl   21:50   0:00 node /home/ken/code/agent-dashboard/server.mjs
+ken      20933  0.0  0.3 1047576 53976 ?       Sl   15:49   0:01 node /home/ken/code/engineer-platform/services/api/node_modules/.bin/../tsx/dist/cli.mjs watch src/server.ts
+ken      22090  0.0  0.4 1045540 72208 ?       Sl   18:06   0:00 node /home/ken/code/engineer-platform/services/api/node_modules/.bin/../tsx/dist/cli.mjs watch src/server.ts
+ken      22507  0.0  0.4 1039136 67300 ?       Sl   18:08   0:00 node /home/ken/code/engineer-platform/services/api/node_modules/.bin/../tsx/dist/cli.mjs watch src/server.ts
+ken      23097  0.0  0.3 1046044 62780 pts/25  Sl   09:23   0:00 node /home/ken/code/engineer-platform/services/api/node_modules/.bin/../tsx/dist/cli.mjs watch src/server.ts
+ken      23509  0.0  0.3 1045780 50316 pts/25  Sl   09:23   0:00 node /home/ken/code/engineer-platform/services/api/node_modules/.bin/../tsx/dist/cli.mjs watch src/server.ts
+ken      23570  0.0  0.0   9424  4864 ?        Ss   05:39   0:00 /usr/bin/dbus-daemon --session --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+root     24307  0.0  0.0   3124   908 ?        Ss   18:10   0:00 /init
+root     24308  0.0  0.0   3140  1040 ?        S    18:10   0:00 /init
+ken      24311  0.0  0.0  10520  9472 pts/45   Ss   18:10   0:00 -bash
+ken      25019  0.0  0.3 1038372 52776 ?       Sl   13:45   0:01 node /home/ken/code/engineer-platform/services/api/node_modules/.bin/../tsx/dist/cli.mjs watch src/server.ts
+ken      25429  0.0  0.3 1263824 60324 pts/5   Sl+  18:11   0:01 /home/ken/.vscode-server/bin/994fd12f8d3a5aa16f17d42c041e5809167e845a/node /home/ken/.vscode-server/bin/994fd12f8d3a5aa16f17d42c041e5809167e845a/out/bootstrap-fork --type=fileWatcher
+ken      25439  5.0  3.3 54770268 538124 pts/5 Sl+  18:11  17:10 /home/ken/.vscode-server/bin/994fd12f8d3a5aa16f17d42c041e5809167e845a/node --dns-result-order=ipv4first /home/ken/.vscode-server/bin/994fd12f8d3a5aa16f17d42c041e5809167e845a/out/bootstrap-fork --type=extensionHost --transformURIs --useHostProxy=true
+ken      25610  0.0  0.5 1264088 79740 pts/5   Sl+  18:11   0:12 /home/ken/.vscode-server/bin/994fd12f8d3a5aa16f17d42c041e5809167e845a/node /home/ken/.vscode-server/bin/994fd12f8d3a5aa16f17d42c041e5809167e845a/out/bootstrap-fork --type=fileWatcher
+ken      25658  0.0  0.1  88104 21872 pts/5    Sl+  18:11   0:00 /home/ken/.vscode-server/extensions/openai.chatgpt-0.4.60-linux-x64/bin/linux-x86_64/codex app-server
+ken      25692  4.5  4.5 66636044 726048 pts/5 Sl+  18:11  15:19 /home/ken/.vscode-server/bin/994fd12f8d3a5aa16f17d42c041e5809167e845a/node --dns-result-order=ipv4first /home/ken/.vscode-server/bin/994fd12f8d3a5aa16f17d42c041e5809167e845a/out/bootstrap-fork --type=extensionHost --transformURIs --useHostProxy=true
+ken      25751  0.0  0.4 1461384 67748 pts/5   Sl+  18:11   0:04 /home/ken/.vscode-server/bin/994fd12f8d3a5aa16f17d42c041e5809167e845a/node /home/ken/.vscode-server/bin/994fd12f8d3a5aa16f17d42c041e5809167e845a/out/bootstrap-fork --type=fileWatcher
+ken      25978  0.1  0.7 1337248 115992 pts/5  Sl+  18:12   0:33 /home/ken/.vscode-server/bin/994fd12f8d3a5aa16f17d42c041e5809167e845a/node /home/ken/.vscode-server/bin/994fd12f8d3a5aa16f17d42c041e5809167e845a/out/bootstrap-fork --type=fileWatcher
+ken      26029  5.3  3.9 65963724 632048 pts/5 Sl+  18:12  17:58 /home/ken/.vscode-server/bin/994fd12f8d3a5aa16f17d42c041e5809167e845a/node --dns-result-order=ipv4first /home/ken/.vscode-server/bin/994fd12f8d3a5aa16f17d42c041e5809167e845a/out/bootstrap-fork --type=extensionHost --transformURIs --useHostProxy=true
+ken      26084  6.0 10.5 68047740 1671484 pts/5 Sl+ 18:12  20:30 /home/ken/.vscode-server/bin/994fd12f8d3a5aa16f17d42c041e5809167e845a/node --dns-result-order=ipv4first /home/ken/.vscode-server/bin/994fd12f8d3a5aa16f17d42c041e5809167e845a/out/bootstrap-fork --type=extensionHost --transformURIs --useHostProxy=true
+ken      26131  0.0  0.5 1466328 84900 pts/5   Sl+  18:12   0:13 /home/ken/.vscode-server/bin/994fd12f8d3a5aa16f17d42c041e5809167e845a/node /home/ken/.vscode-server/bin/994fd12f8d3a5aa16f17d42c041e5809167e845a/out/bootstrap-fork --type=fileWatcher
+ken      26148  5.7  7.8 67143700 1240948 pts/5 Sl+ 18:12  19:22 /home/ken/.vscode-server/bin/994fd12f8d3a5aa16f17d42c041e5809167e845a/node --dns-result-order=ipv4first /home/ken/.vscode-server/bin/994fd12f8d3a5aa16f17d42c041e5809167e845a/out/bootstrap-fork --type=extensionHost --transformURIs --useHostProxy=true
+ken      26187  0.0  0.1  88112 22000 pts/5    Sl+  18:12   0:00 /home/ken/.vscode-server/extensions/openai.chatgpt-0.4.60-linux-x64/bin/linux-x86_64/codex app-server
+ken      26263  0.0  0.0  10028  7236 ?        S    21:56   0:00 /bin/bash --init-file /home/ken/.vscode-server/bin/994fd12f8d3a5aa16f17d42c041e5809167e845a/out/vs/workbench/contrib/terminal/common/scripts/shellIntegration-bash.sh
+ken      26265  0.0  0.4 1030832 66900 ?       Sl   21:56   0:00 node server.mjs
+ken      26308  0.0  0.4 1022280 68444 pts/5   Sl+  18:12   0:01 /home/ken/.vscode-server/bin/994fd12f8d3a5aa16f17d42c041e5809167e845a/node /home/ken/.vscode-server/bin/994fd12f8d3a5aa16f17d42c041e5809167e845a/extensions/json-language-features/server/dist/node/jsonServerMain --node-ipc --clientProcessId=25692
+ken      26644  0.0  1.0 1097200 160404 pts/5  Sl+  18:12   0:05 /home/ken/.vscode-server/bin/994fd12f8d3a5aa16f17d42c041e5809167e845a/node --max-old-space-size=3072 /home/ken/.vscode-server/bin/994fd12f8d3a5aa16f17d42c041e5809167e845a/extensions/node_modules/typescript/lib/tsserver.js --serverMode partialSemantic --useInferredProjectPerProjectRoot --disableAutomaticTypingAcquisition --cancellationPipeName /tmp/vscode-typescript1000/9d69ad38553c3598b2ad/tscancellation-4c865542536b4636da50.tmp* --globalPlugins @vscode/copilot-typescript-server-plugin --pluginProbeLocations /home/ken/.vscode-server/extensions/github.copilot-chat-0.35.3 --locale en --noGetErrOnBackgroundUpdate --canUseWatchEvents --validateDefaultNpmLocation --useNodeIpc
+ken      26648  0.1  3.7 1528968 598896 pts/5  Sl+  18:12   0:21 /home/ken/.vscode-server/bin/994fd12f8d3a5aa16f17d42c041e5809167e845a/node --max-old-space-size=3072 /home/ken/.vscode-server/bin/994fd12f8d3a5aa16f17d42c041e5809167e845a/extensions/node_modules/typescript/lib/tsserver.js --useInferredProjectPerProjectRoot --enableTelemetry --cancellationPipeName /tmp/vscode-typescript1000/9d69ad38553c3598b2ad/tscancellation-306595101559fb6a88f1.tmp* --globalPlugins @vscode/copilot-typescript-server-plugi

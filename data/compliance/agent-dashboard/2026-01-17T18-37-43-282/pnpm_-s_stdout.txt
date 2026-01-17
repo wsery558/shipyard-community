@@ -1,0 +1,6 @@
+[2026-01-17T18:37:43.503Z] Starting smoke tests...
+[2026-01-17T18:37:43.504Z] Starting server in smoke mode...
+[2026-01-17T18:37:43.615Z] Server stderr: Fatal: failed to start server: Error: EADDRINUSE: no free port in range 8788-8799
+    at startServerWithRetry (file:///home/ken/code/agent-dashboard/server.mjs:2529:9)
+    at process.processTicksAndRe
+[2026-01-17T18:37:43.619Z] Server exited with code 1
