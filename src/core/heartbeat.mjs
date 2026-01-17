@@ -4,10 +4,6 @@
 import * as HB from "../../packages/open-core/src/core/heartbeat.mjs";
 export * from "../../packages/open-core/src/core/heartbeat.mjs";
 
-/**
- * Fallback implementation (only used if open-core doesn't export CommandHeartbeat)
- * Provides a minimal heartbeat utility to keep server bootable in Open Core.
- */
 class _FallbackCommandHeartbeat {
   constructor(opts = {}) {
     const { timeoutMs = 30_000, now = () => Date.now() } = opts;
@@ -36,10 +32,9 @@ class _FallbackCommandHeartbeat {
   }
 }
 
-// Prefer real implementation from open-core if present; else default/Heartbeat; else fallback.
+// Prefer real impl if open-core exports it; else default/Heartbeat; else fallback.
 export const CommandHeartbeat =
   HB.CommandHeartbeat ??
   HB.default ??
   HB.Heartbeat ??
   _FallbackCommandHeartbeat;
-
