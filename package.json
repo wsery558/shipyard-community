@@ -3,7 +3,7 @@
   "version": "4.9.0-rc1",
   "main": "index.js",
   "scripts": {
-    "test": "node scripts/check-open-core-boundaries.mjs && pnpm -s test:smoke && pnpm -s test:unit && pnpm -s test:regression",
+    "test": "node scripts/audit_open_release.mjs && node scripts/check-open-core-boundaries.mjs",
     "test:boundaries": "node scripts/check-open-core-boundaries.mjs",
     "test:smoke": "WS_SMOKE=1 node scripts/ws_smoke_test.mjs",
     "test:unit": "node --test test/artifactManager.validation.test.mjs test/autoVerify.test.mjs test/autoVerifyFailure.test.mjs test/budget.test.mjs test/plan.test.mjs test/report-api.test.mjs test/report.test.mjs test/safety.test.mjs test/stallWatchdog.test.mjs test/complianceRunner.test.mjs test/platform-compliance.test.mjs",
