@@ -1,0 +1,1 @@
+// AUTO-SHIM (open-core): legacy src/core -> packages/open-core\nexport * from "../../packages/open-core/src/core/complianceRunner.mjs";\n
