@@ -1,20 +1,16 @@
-// OPEN SHIM: server.mjs expects `CommandHeartbeat`.
-// We try to alias from open-core; if not present, provide a minimal no-op class to keep booting.
+// AUTO-GENERATED OPEN SHIM
+// Keeps server.mjs bootable in open distribution.
+// Source: packages/open-core/src/core/heartbeat.mjs (if present)
 
 import * as M from "../../packages/open-core/src/core/heartbeat.mjs";
 
-const Impl =
-  M.CommandHeartbeat ??
-  M.CommandHeartBeat ??
-  M.Heartbeat ??
-  M.default;
+function _openStub(name, args) {
+  return { ok: false, mode: 'open_stub', name, args, reason: 'Not available in Open Core (requires paid-platform or missing in this snapshot).' };
+}
 
-export const CommandHeartbeat = Impl ?? class CommandHeartbeat {
-  constructor(..._args) {}
-  beat() {}
-  touch() {}
-  tick() {}
-  stop() {}
-};
+export const once } from 'node:events';
+import { CommandHeartbeat = M.once } from 'node:events';
+import { CommandHeartbeat ?? ((...args) => _openStub('once } from 'node:events';
+import { CommandHeartbeat', args));
 
 export * from "../../packages/open-core/src/core/heartbeat.mjs";

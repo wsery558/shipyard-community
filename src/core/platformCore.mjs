@@ -1,17 +1,21 @@
-// OPEN STUB: paid-platform only. Keep server.mjs bootable without shipping paid code.
-// Generated from server.mjs import list (platformCore).
+// AUTO-GENERATED OPEN SHIM
+// Keeps server.mjs bootable in open distribution.
+// Source: packages/open-core/src/core/platformCore.mjs (if present)
 
-function _stub(name, args) {
-  return { ok: false, mode: 'open_stub', name, args, reason: 'Requires paid-platform module.' };
+const M = {};
+
+function _openStub(name, args) {
+  return { ok: false, mode: 'open_stub', name, args, reason: 'Not available in Open Core (requires paid-platform or missing in this snapshot).' };
 }
 
-export function loadUsers(...args) { return _stub('loadUsers', args); }
-export function getUserById(...args) { return _stub('getUserById', args); }
-export function getUserEntitlements(...args) { return _stub('getUserEntitlements', args); }
-export function grantEntitlement(...args) { return _stub('grantEntitlement', args); }
-export function revokeEntitlement(...args) { return _stub('revokeEntitlement', args); }
-export function appendEvent(...args) { return _stub('appendEvent', args); }
-export function loadEvents(...args) { return _stub('loadEvents', args); }
-export function calculateMetrics(...args) { return _stub('calculateMetrics', args); }
-export function getPassiveComplianceStatus(...args) { return _stub('getPassiveComplianceStatus', args); }
-export function getAllProductsComplianceStatus(...args) { return _stub('getAllProductsComplianceStatus', args); }
+export const loadUsers = M.loadUsers ?? ((...args) => _openStub('loadUsers', args));
+export const getUserById = M.getUserById ?? ((...args) => _openStub('getUserById', args));
+export const getUserEntitlements = M.getUserEntitlements ?? ((...args) => _openStub('getUserEntitlements', args));
+export const grantEntitlement = M.grantEntitlement ?? ((...args) => _openStub('grantEntitlement', args));
+export const revokeEntitlement = M.revokeEntitlement ?? ((...args) => _openStub('revokeEntitlement', args));
+export const appendEvent = M.appendEvent ?? ((...args) => _openStub('appendEvent', args));
+export const loadEvents = M.loadEvents ?? ((...args) => _openStub('loadEvents', args));
+export const calculateMetrics = M.calculateMetrics ?? ((...args) => _openStub('calculateMetrics', args));
+export const getPassiveComplianceStatus = M.getPassiveComplianceStatus ?? ((...args) => _openStub('getPassiveComplianceStatus', args));
+export const getAllProductsComplianceStatus = M.getAllProductsComplianceStatus ?? ((...args) => _openStub('getAllProductsComplianceStatus', args));
+

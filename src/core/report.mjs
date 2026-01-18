@@ -1,27 +1,13 @@
-// OPEN SHIM: server.mjs expects `buildMarkdownReport` from ./src/core/report.mjs
-// We alias to whatever open-core provides; otherwise return a safe placeholder string.
+// AUTO-GENERATED OPEN SHIM
+// Keeps server.mjs bootable in open distribution.
+// Source: packages/open-core/src/core/report.mjs (if present)
 
 import * as M from "../../packages/open-core/src/core/report.mjs";
 
-export function buildMarkdownReport(...args) {
-  const fn =
-    M.buildMarkdownReport ||
-    M.buildReportMarkdown ||
-    M.buildMarkdown ||
-    M.buildReport;
-
-  if (typeof fn === "function") return fn(...args);
-
-  // Safe fallback (keeps server bootable even if report generator isn't shipped)
-  return [
-    "# Report",
-    "",
-    "(Open Core shim) Report generation is not available in this snapshot.",
-    "",
-    "This requires additional modules in the paid platform pack or a fuller core export.",
-    "",
-  ].join("\n");
+function _openStub(name, args) {
+  return { ok: false, mode: 'open_stub', name, args, reason: 'Not available in Open Core (requires paid-platform or missing in this snapshot).' };
 }
 
-// Re-export whatever open-core *does* export (keep existing API surface available)
+export const buildMarkdownReport = M.buildMarkdownReport ?? ((...args) => _openStub('buildMarkdownReport', args));
+
 export * from "../../packages/open-core/src/core/report.mjs";
