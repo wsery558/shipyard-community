@@ -1,11 +1,11 @@
 // AUTO-GENERATED OPEN SHIM
 // Keeps server.mjs bootable in open distribution.
-// Source: packages/open-core/src/core/runlog.mjs (if present)
+// Maps ./src/core/runlog.mjs -> packages/open-core/src/core/runlog.mjs (if present)
 
 import * as M from "../../packages/open-core/src/core/runlog.mjs";
 
 function _openStub(name, args) {
-  return { ok: false, mode: 'open_stub', name, args, reason: 'Not available in Open Core (requires paid-platform or missing in this snapshot).' };
+  return { ok: false, mode: 'open_stub', name, args, reason: 'Not available in Open Core (missing or requires paid-platform).' };
 }
 
 export const startRunSession = M.startRunSession ?? ((...args) => _openStub('startRunSession', args));
