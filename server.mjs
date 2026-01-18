@@ -1648,6 +1648,20 @@ wss.on('error', (err) => {
 });
 // Set up runlog event callback to broadcast to WebSocket clients
 import { setEventCallback } from './src/core/runlog.mjs';
+
+/* __OPEN_CLI_PORT_ENV_V1__
+   Open Core: honor CLI port early.
+   Supports: node server.mjs --port 12345  OR  node server.mjs --port=12345
+*/
+{
+  const argv = process.argv || [];
+  let p = null;
+  const i = argv.indexOf("--port");
+  if (i >= 0 && i + 1 < argv.length) p = argv[i + 1];
+  const eq = argv.find(a => typeof a === "string" && a.startsWith("--port="));
+  if (!p && eq) p = eq.split("=", 2)[1];
+  if (p != null && p !== "") process.env.PORT = String(p);
+}
 setEventCallback((event) => {
   wss.clients.forEach((c) => {
     if (c.readyState === 1) {
