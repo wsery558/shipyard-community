@@ -175,7 +175,7 @@ if (isSmoke()) {
   console.log('OPENAI_API_KEY:', hasKey ? 'has_key' : 'missing');
 }
 
-const client = isSmoke() ? null : new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+const client = isSmoke() ? null : getOpenAI();
 
 // -----------------------------
 // Projects
