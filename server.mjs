@@ -7,6 +7,37 @@ import http from 'http';
 import { WebSocketServer } from 'ws';
 import pty from 'node-pty';
 import OpenAI from 'openai';
+
+/* __OPENAI_OPTIONAL_V1__ */
+// Open Core: OpenAI is OPTIONAL. Server must boot without OPENAI_API_KEY.
+let openai = null;
+
+function getOpenAI() {
+  if (openai) return openai;
+  const key = process.env.OPENAI_API_KEY;
+  if (!key) return null;
+  try {
+    openai = new OpenAI({ apiKey: key });
+    return openai;
+  } catch (e) {
+    console.warn("[open-core] OpenAI disabled:", e?.message || e);
+    return null;
+  }
+}
+
+function requireOpenAI(res) {
+  const c = getOpenAI();
+  if (!c) {
+    res.status(501).json({
+      ok: false,
+      error: "OPENAI_DISABLED",
+      message: "This feature requires OPENAI_API_KEY. Open Core defaults to offline mode."
+    });
+    return null;
+  }
+  return c;
+}
+
 // Open Core imports (local orchestrator)
 import { isDangerousBash } from './src/core/safety.mjs';
 import { checkBudgetExceeded as checkBudgetCore } from './src/core/budget.mjs';
