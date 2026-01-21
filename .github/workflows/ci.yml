@@ -35,6 +35,8 @@ jobs:
       
       - name: Run smoke tests
         run: pnpm -s test:smoke
+        env:
+          DISABLE_PTY: '1'
       
       - name: Lint
         run: pnpm -s lint

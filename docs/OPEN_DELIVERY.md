@@ -164,6 +164,10 @@ These include:
 # Port (default 8788)
 PORT=8788
 
+# Disable terminal features (node-pty) for CI/headless environments
+# Useful when native PTY binding is unavailable
+DISABLE_PTY=1
+
 # Data directory (default ./data)
 DATA_DIR=./data
 
@@ -173,6 +177,8 @@ LOG_LEVEL=debug
 # No auth mode (default true)
 NO_AUTH=true
 ```
+
+**Note:** Terminal features in the web UI require `node-pty`, which may not be available in all environments (e.g., GitHub Actions CI, containerized deployments). Set `DISABLE_PTY=1` to disable PTY and run core features without it. The /health, /api/state, and /api/projects endpoints will continue to work normally.
 
 ### Default Plans
 

@@ -5,7 +5,7 @@ import path from 'path';
 import express from 'express';
 import http from 'http';
 import { WebSocketServer } from 'ws';
-import pty from 'node-pty';
+// node-pty is now lazy-loaded (see getPty() helper below)
 import OpenAI from 'openai';
 
 /* __OPENAI_OPTIONAL_V1__ */
@@ -37,6 +37,30 @@ function requireOpenAI(res) {
   }
   return c;
 }
+
+/* __PTY_OPTIONAL_V1__ */
+// Terminal features (node-pty) are OPTIONAL. Server must boot without node-pty.
+// Set DISABLE_PTY=1 to skip loading (useful for CI/smoke tests).
+let _pty = undefined; // undefined = not yet loaded, null = unavailable, object = loaded
+
+async function getPty() {
+  if (_pty !== undefined) return _pty; // cached (null or module)
+  if (process.env.DISABLE_PTY === '1' || process.env.DISABLE_PTY === 'true') {
+    _pty = null;
+    console.warn('[shipyard] node-pty disabled via DISABLE_PTY=1; terminal features unavailable');
+    return null;
+  }
+  try {
+    const m = await import('node-pty');
+    _pty = m.default ?? m;
+    return _pty;
+  } catch (e) {
+    _pty = null;
+    console.warn('[shipyard] node-pty unavailable; terminal features disabled:', e?.message || e);
+    return null;
+  }
+}
+
 
 // Open Core imports (local orchestrator)
 import { isDangerousBash } from './src/core/safety.mjs';
@@ -385,7 +409,7 @@ function summarizeUsage(projectId) {
 // -----------------------------
 // Terminal sessions (per connection)
 // -----------------------------
-function createTerm(projectId) {
+async function createTerm(projectId) {
   const proj = PROJECTS.map.get(projectId) || PROJECTS.list[0];
   const shell = process.env.SHELL || 'bash';
   // In test mode, allow a fake PTY implementation via FAKE_PTY=1
@@ -428,6 +452,12 @@ function createTerm(projectId) {
       }
     };
     return term;
+  }
+
+  const pty = await getPty();
+  if (!pty) {
+    // Return null to signal PTY unavailable (caller must handle)
+    return null;
   }
 
   return pty.spawn(shell, [], {
@@ -1774,6 +1804,14 @@ const currentState = loadState();
       return;
     }
     if (msg && msg.type === 'term:ctrlc') {
+      if (!term) {
+        ws.send(JSON.stringify({
+          type: 'term:error',
+          error: 'PTY_DISABLED',
+          message: 'Ctrl+C failed: PTY unavailable'
+        }));
+        return;
+      }
       term.write('\x03'); // Ctrl+C
       return;
     }
