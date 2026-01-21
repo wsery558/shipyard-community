@@ -5,8 +5,30 @@
 
 set -e  # Exit on error
 
-DEMO_PORT=8788
+DEFAULT_PORT=8788
+DEMO_PORT="${PORT:-$DEFAULT_PORT}"
 SERVER_PID=""
+
+port_in_use() {
+  local port="$1"
+  python3 - "$port" <<'PY'
+import socket, sys
+port = int(sys.argv[1])
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+    s.settimeout(0.25)
+    used = s.connect_ex(("127.0.0.1", port)) == 0
+sys.exit(0 if used else 1)
+PY
+}
+
+find_free_port() {
+  python3 - <<'PY'
+import socket
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+    s.bind(("", 0))
+    print(s.getsockname()[1])
+PY
+}
 
 # Cleanup function: kill server on exit
 cleanup() {
@@ -25,6 +47,20 @@ echo "  Shipyard Community – 30-Minute Live Demo"
 echo "════════════════════════════════════════════════"
 echo ""
 
+# Resolve port and handle conflicts
+if port_in_use "$DEMO_PORT"; then
+  if [ -z "${PORT:+set}" ] && [ "$DEMO_PORT" = "$DEFAULT_PORT" ]; then
+    echo "⚠️  Default port $DEFAULT_PORT is busy; searching for a free port..."
+    ALT_PORT=$(find_free_port)
+    DEMO_PORT="$ALT_PORT"
+    echo "   Using fallback PORT=$DEMO_PORT"
+  else
+    echo "❌ Port $DEMO_PORT is busy. Choose a different port, e.g."
+    echo "   PORT=8790 bash scripts/demo_30min.sh"
+    exit 1
+  fi
+fi
+
 # Step 1: Build UI
 echo "📦 Step 1: Building UI..."
 pnpm -s build
@@ -42,6 +78,7 @@ echo "🚀 Step 3: Starting server on port $DEMO_PORT..."
 PORT=$DEMO_PORT pnpm -s start > /tmp/demo_server.log 2>&1 &
 SERVER_PID=$!
 echo "   Server PID: $SERVER_PID"
+echo "   Base URL: http://127.0.0.1:$DEMO_PORT"
 
 # Wait for server to be ready
 echo "   Waiting for server to boot..."

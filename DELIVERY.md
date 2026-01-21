@@ -45,10 +45,11 @@ A typical run snapshot includes:
 }
 ```
 
-Every project run is:
-- **Logged**: timestamped entry in `./data/runs/*.jsonl`
-- **Replayed**: any run can be re-executed with identical inputs
-- **Verified**: compliance gates and safety checks run before execution
+Every project run (in this snapshot) ships with **pre-recorded logs** under `data/runs/`:
+- **Logged**: JSONL files such as `data/runs/agent-dashboard.jsonl` and `data/runs/demo-project.jsonl`
+- **Meta/verify traces**: per-project folders like `data/runs/testproj/verify_rs1_*.json`
+- View logs: `ls -la data/runs` and `head -n 5 data/runs/agent-dashboard.jsonl`
+- Replayed/Verified: replay metadata exists, but Community uses these files as read-only examples; live replay governance is a Pro capability.
 
 ---
 
@@ -84,8 +85,9 @@ Every project run is:
 
 ```
 Community activity:
-  - Runs logged to ./data/runs/*.jsonl
-  - State changes recorded in memory
+  - Sample run logs live in `data/runs/*.jsonl` (e.g., `data/runs/agent-dashboard.jsonl`, `data/runs/demo-project.jsonl`)
+  - Replay/meta artifacts live in `data/runs/<project>/verify_*_meta.json`
+  - State changes recorded in memory during smoke/demo (no new files written)
   - No user attribution or retention policy
 
 Pro governance:
@@ -125,7 +127,8 @@ Delivery governance answers these questions:
 ## Next Steps
 
 - Run the demo: `bash scripts/demo_30min.sh`
-- Inspect run logs: `cat ./data/runs/agent-dashboard.jsonl | jq`
+- Inspect bundled run logs: `ls -la data/runs` and `head -n 5 data/runs/agent-dashboard.jsonl`
+- Explore replay/meta examples: `find data/runs -type f -name "*_meta.json" | head`
 - Try a custom project: add to `./data/projects.json` and re-run
 - Upgrade to Pro: governance layer + team management + compliance
 
