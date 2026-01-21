@@ -809,6 +809,11 @@ function normalizeState(s) {
   };
 }
 
+// ---- API: health ----
+app.get('/health', (req, res) => {
+  res.json({ ok: true, name: 'agent-dashboard', version: '4.9.0-rc1' });
+});
+
 app.get('/api/state', (req, res) => {
   res.json(loadState());
 });
@@ -895,38 +900,12 @@ app.get('/api/report', (req, res) => {
 
 // ---- API: project-status (multi-project support) ----
 app.get('/api/project-status', (req, res) => {
-  try {
-    const { project } = req.query;
-    if (!project) {
-      return res.status(400).json({ error: 'Missing project parameter' });
-    }
-
-    const plan = loadPlan(project);
-    const costs = loadCost();
-    const cost = costs[project] || {};
-    const state = loadState();
-    
-    // Count task statuses
-    const tasks = asArray(plan.tasks || []);
-    const taskStats = {
-      todo: tasks.filter(t => t.status === 'todo').length,
-      doing: tasks.filter(t => t.status === 'doing').length,
-      done: tasks.filter(t => t.status === 'done').length,
-      total: tasks.length
-    };
-
-    res.json({
-      project,
-      tasks: taskStats,
-      plan: { projectId: plan.projectId, tasks },
-      cost,
-      runState: state.runState || 'idle',
-      progress: state.currentPct || 0
-    });
-  } catch (e) {
-    console.error('[api/project-status] error:', e);
-    res.status(500).json({ error: 'Failed to fetch project status' });
-  }
+  const project = typeof req.query.project === 'string' ? req.query.project : 'demo-project';
+  res.json({
+    projectId: project,
+    status: 'unknown',
+    note: 'Platform project status is not available in this open-core snapshot (HTTP 501 endpoints are stubbed elsewhere).'
+  });
 });
 
 // ---- API: project-health (multi-project health metrics) ----

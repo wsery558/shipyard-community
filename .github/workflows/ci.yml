@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [20.x]
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      
+      - name: Enable pnpm via corepack
+        run: corepack enable
+      
+      - name: Install dependencies
+        run: pnpm install
+      
+      - name: Build UI
+        run: pnpm -s build
+      
+      - name: Run smoke tests
+        run: pnpm -s test:smoke
+      
+      - name: Lint
+        run: pnpm -s lint
+      
+      - name: Typecheck
+        run: pnpm -s typecheck

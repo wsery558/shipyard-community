@@ -1,1 +1,6 @@
 node_modules/
+ui-dist/
+dist/
+*.log
+.DS_Store
+.env.local

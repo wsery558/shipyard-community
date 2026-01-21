@@ -37,11 +37,11 @@ pnpm install
 node server.mjs
 ```
 
-Server starts on **http://localhost:3000**
+Server starts on **http://localhost:8788**
 
 ### First Run
 
-1. Open http://localhost:3000 in browser
+1. Open http://localhost:8788 in browser
 2. Click "Create Project" or "+" button
 3. Enter project name and parameters
 4. View tasks, artifacts, health metrics
@@ -57,7 +57,7 @@ Server starts on **http://localhost:3000**
 
 ```
 agent-dashboard-open-v0.1/
-├── server.mjs              # Express server (runs on :3000)
+├── server.mjs              # Express server (runs on :8788)
 ├── package.json
 ├── pnpm-lock.yaml
 │
@@ -161,8 +161,8 @@ These include:
 ### Environment Variables
 
 ```bash
-# Port (default 3000)
-PORT=3000
+# Port (default 8788)
+PORT=8788
 
 # Data directory (default ./data)
 DATA_DIR=./data
@@ -233,7 +233,7 @@ All compliance checks are **optional** in open-core mode.
 ### Creating a Project
 
 ```bash
-curl -X POST http://localhost:3000/api/projects \
+curl -X POST http://localhost:8788/api/projects \
   -H "Content-Type: application/json" \
   -d '{
     "name": "my-workflow",
@@ -256,7 +256,7 @@ Response:
 ### Queuing a Task
 
 ```bash
-curl -X POST http://localhost:3000/api/projects/proj_abc123/tasks \
+curl -X POST http://localhost:8788/api/projects/proj_abc123/tasks \
   -H "Content-Type: application/json" \
   -d '{
     "type": "generate",
@@ -271,7 +271,7 @@ curl -X POST http://localhost:3000/api/projects/proj_abc123/tasks \
 ### Checking Health
 
 ```bash
-curl http://localhost:3000/api/projects/proj_abc123/health
+curl http://localhost:8788/api/projects/proj_abc123/health
 ```
 
 Response:
@@ -411,8 +411,8 @@ Changes take effect on next request (no restart needed).
 ### Server won't start
 
 ```bash
-# Check port 3000 is available
-lsof -i :3000
+# Check port 8788 is available
+lsof -i :8788
 
 # Use different port
 PORT=4000 node server.mjs
@@ -552,7 +552,7 @@ Use the REST API to integrate workflows:
 
 ```bash
 #!/bin/bash
-curl -X POST http://localhost:3000/api/projects/my-proj/tasks \
+curl -X POST http://localhost:8788/api/projects/my-proj/tasks \
   -H "Content-Type: application/json" \
   -d @- <<EOF
 {
