@@ -61,6 +61,7 @@ async function getPty() {
   }
 }
 
+
 // Open Core imports (local orchestrator)
 import { isDangerousBash } from './src/core/safety.mjs';
 import { checkBudgetExceeded as checkBudgetCore } from './src/core/budget.mjs';
@@ -1489,10 +1490,9 @@ app.get('/api/compliance/status', (req, res) => {
 // OPEN-ONLY: This endpoint is disabled in open release
 app.get('/api/compliance/passive', (req, res) => {
   res.status(501).json({ 
-    error: 'Compliance analytics not available in Community',
+    error: 'Not implemented in Open Core',
     feature: 'Passive compliance from platform SSOT',
-    upgrade: 'Shipyard Pro adds team compliance dashboards, policy audit trails, and SOC2-ready exports.',
-    docs: 'https://shipyard.sh/docs/compliance'
+    requires: 'paid-platform module'
   });
 });
 
@@ -1501,80 +1501,72 @@ app.get('/api/compliance/passive', (req, res) => {
 // GET /api/platform/auth/me - Current user (OPEN-ONLY: Disabled)
 app.get('/api/platform/auth/me', (req, res) => {
   res.status(501).json({ 
-    error: 'Team authentication not available in Community',
-    feature: 'Platform user identity and SSO',
-    upgrade: 'Shipyard Pro adds role-based access control (RBAC), OAuth/SAML, and team entitlements.',
-    docs: 'https://shipyard.sh/docs/auth'
+    error: 'Not implemented in Open Core',
+    feature: 'Platform authentication',
+    requires: 'paid-platform module'
   });
 });
 
 // GET /api/platform/entitlements - Get entitlements (OPEN-ONLY: Disabled)
 app.get('/api/platform/entitlements', (req, res) => {
   res.status(501).json({ 
-    error: 'Entitlements not available in Community',
-    feature: 'Team role-based access control',
-    upgrade: 'Shipyard Pro enforces who can approve dangerous commands, view audit logs, and manage team permissions.',
-    docs: 'https://shipyard.sh/docs/entitlements'
+    error: 'Not implemented in Open Core',
+    feature: 'Entitlement management',
+    requires: 'paid-platform module'
   });
 });
 
 // POST /api/platform/admin/entitlements/grant - Grant entitlement (OPEN-ONLY: Disabled)
 app.post('/api/platform/admin/entitlements/grant', express.json(), (req, res) => {
   res.status(501).json({ 
-    error: 'Role grants not available in Community',
-    feature: 'Grant team roles and permissions',
-    upgrade: 'Shipyard Pro lets admins grant PM, Engineer, and Reviewer roles with fine-grained approval permissions.',
-    docs: 'https://shipyard.sh/docs/admin'
+    error: 'Not implemented in Open Core',
+    feature: 'Grant entitlements',
+    requires: 'paid-platform module'
   });
 });
 
 // POST /api/platform/admin/entitlements/revoke - Revoke entitlement (OPEN-ONLY: Disabled)
 app.post('/api/platform/admin/entitlements/revoke', express.json(), (req, res) => {
   res.status(501).json({ 
-    error: 'Role revocation not available in Community',
-    feature: 'Revoke team roles and permissions',
-    upgrade: 'Shipyard Pro lets admins revoke access instantly when team members leave.',
-    docs: 'https://shipyard.sh/docs/admin'
+    error: 'Not implemented in Open Core',
+    feature: 'Revoke entitlements',
+    requires: 'paid-platform module'
   });
 });
 
 // POST /api/platform/events - Ingest event (OPEN-ONLY: Disabled)
 app.post('/api/platform/events', express.json(), (req, res) => {
   res.status(501).json({ 
-    error: 'Event ingestion not available in Community',
-    feature: 'Send events to platform analytics',
-    upgrade: 'Shipyard Pro ingests audit events for cross-project analytics, cost rollups, and compliance reporting.',
-    docs: 'https://shipyard.sh/docs/events'
+    error: 'Not implemented in Open Core',
+    feature: 'Platform event ingestion',
+    requires: 'paid-platform module'
   });
 });
 
 // GET /api/platform/admin/events - Query events (OPEN-ONLY: Disabled)
 app.get('/api/platform/admin/events', (req, res) => {
   res.status(501).json({ 
-    error: 'Event querying not available in Community',
-    feature: 'Query team audit events across projects',
-    upgrade: 'Shipyard Pro provides full-text search over audit logs, filterable by user, date, project, and outcome.',
-    docs: 'https://shipyard.sh/docs/events'
+    error: 'Not implemented in Open Core',
+    feature: 'Platform event querying',
+    requires: 'paid-platform module'
   });
 });
 
 // GET /api/platform/admin/metrics - Get metrics (OPEN-ONLY: Disabled)
 app.get('/api/platform/admin/metrics', (req, res) => {
   res.status(501).json({ 
-    error: 'Usage metrics not available in Community',
-    feature: 'Team usage analytics and cost forecasts',
-    upgrade: 'Shipyard Pro tracks cost by user/project/date, forecasts quarterly spend, and alerts on budget variance.',
-    docs: 'https://shipyard.sh/docs/analytics'
+    error: 'Not implemented in Open Core',
+    feature: 'Metrics calculation',
+    requires: 'paid-platform module'
   });
 });
 
 // GET /api/platform/admin/compliance - Get compliance (OPEN-ONLY: Disabled)
 app.get('/api/platform/admin/compliance', (req, res) => {
   res.status(501).json({ 
-    error: 'Compliance dashboards not available in Community',
-    feature: 'Team compliance status and audit reports',
-    upgrade: 'Shipyard Pro exports SOC2-ready compliance reports, tracks policy violations by user, and integrates with audit systems.',
-    docs: 'https://shipyard.sh/docs/compliance'
+    error: 'Not implemented in Open Core',
+    feature: 'Platform compliance status',
+    requires: 'paid-platform module'
   });
 });
 
@@ -1750,7 +1742,7 @@ async function triggerSummaryUpdate(project) {
   }
 }
 
-wss.on('connection', async (ws) => {
+wss.on('connection', (ws) => {
     // Safety net: never crash on per-socket error
   ws.on('error', (err) => {
     try { console.error('[ws] error:', (err && err.code) ? err.code : err); } catch {}
@@ -1758,23 +1750,14 @@ wss.on('connection', async (ws) => {
 
 const currentState = loadState();
   let activeProjectId = PROJECTS.map.has(currentState.project) ? currentState.project : (PROJECTS.list[0]?.id || 'default');
-  let term = await createTerm(activeProjectId);
+  let term = createTerm(activeProjectId);
   let sub = null;
 
-  async function attach(projectId) {
+  function attach(projectId) {
     activeProjectId = projectId;
     if (sub && typeof sub.dispose === 'function') sub.dispose();
     if (term && typeof term.kill === 'function') term.kill();
-    term = await createTerm(activeProjectId);
-    if (!term) {
-      // PTY unavailable, send error message
-      ws.send(JSON.stringify({
-        type: 'term:error',
-        error: 'PTY_DISABLED',
-        message: 'Terminal features require node-pty. Set DISABLE_PTY=1 acknowledged; terminal unavailable.'
-      }));
-      return;
-    }
+    term = createTerm(activeProjectId);
 
     sub = term.onData((data) => {
       if (ws.readyState === 1) ws.send(JSON.stringify({ type: 'term:data', data }));
@@ -1806,15 +1789,6 @@ const currentState = loadState();
   } catch (e) {}
   attach(activeProjectId);
 
-  // Guard: if term is unavailable after initial creation, notify client
-  if (!term) {
-    ws.send(JSON.stringify({
-      type: 'term:error',
-      error: 'PTY_DISABLED',
-      message: 'Terminal features unavailable (node-pty disabled or failed to load)'
-    }));
-  }
-
   ws.on('message', async (raw) => {
     const msg = safeJsonParse(raw);
     // MSG_GUARD_INSERTED: ws message may be empty / not-json / not-object
@@ -1826,14 +1800,6 @@ const currentState = loadState();
     if (msg.type === 'pm') msg.type = 'pm:ask';
 
     if (msg && msg.type === 'term:write') {
-      if (!term) {
-        ws.send(JSON.stringify({
-          type: 'term:error',
-          error: 'PTY_DISABLED',
-          message: 'Terminal write failed: PTY unavailable'
-        }));
-        return;
-      }
       term.write(msg.data);
       return;
     }
