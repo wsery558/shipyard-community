@@ -1,6 +1,6 @@
 # Agent Dashboard Open Core
 
-[![CI](https://github.com/github/agent-dashboard-open/actions/workflows/ci.yml/badge.svg)](https://github.com/github/agent-dashboard-open/actions/workflows/ci.yml)
+[![CI](https://github.com/wsery558/shipyard-community/actions/workflows/ci.yml/badge.svg)](https://github.com/wsery558/shipyard-community/actions/workflows/ci.yml)
 
 Local-first open-core snapshot of Agent Dashboard. This build runs without platform services or API keys; all paid/platform endpoints return HTTP 501 by design so you can lean on the open-source workflow without accidentally invoking gated services.
 
