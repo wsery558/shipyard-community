@@ -25,6 +25,18 @@ function getOpenAI() {
   }
 }
 
+function requireOpenAI(res) {
+  const c = getOpenAI();
+  if (!c) {
+    res.status(501).json({
+      ok: false,
+      error: "OPENAI_DISABLED",
+      message: "This feature requires OPENAI_API_KEY. Open Core defaults to offline mode."
+    });
+    return null;
+  }
+  return c;
+}
 
 /* __PTY_OPTIONAL_V1__ */
 // Terminal features (node-pty) are OPTIONAL. Server must boot without node-pty.
@@ -49,18 +61,19 @@ async function getPty() {
   }
 }
 
-
 // Open Core imports (local orchestrator)
 import { isDangerousBash } from './src/core/safety.mjs';
 import { checkBudgetExceeded as checkBudgetCore } from './src/core/budget.mjs';
-import { startRunSession, stopRunSession, getCurrentRunSessionId, logEvent as logEventCore, getRunEvents, getLatestRunSessionId, listRunSessions } from './src/core/runlog.mjs';
+import { mergePlans, computeProgress } from './src/core/plan.mjs';
+import { startRunSession, stopRunSession, getCurrentRunSessionId, logEvent as logEventCore, getRunEvents, getLatestRunSessionId, listRunSessions, truncateOutput } from './src/core/runlog.mjs';
 import { buildMarkdownReport } from './src/core/report.mjs';
 import { getStorageClient, initializeStorage } from './src/core/storage.mjs';
+import { once } from 'node:events';
 import { CommandHeartbeat } from './src/core/heartbeat.mjs';
 import { getStallWatchdog } from './src/core/stallWatchdog.mjs';
 import { detectVerifyCmds, runVerification } from './src/core/autoVerify.mjs';
 import { createContextSnapshot } from './src/core/contextPack.mjs';
-import { buildSummary } from './src/core/summary.mjs';
+import { buildSummary, buildOfflineSummary } from './src/core/summary.mjs';
 import { cleanupArtifacts } from './src/core/artifactManager.mjs';
 import { getQueueManager } from './src/core/projectQueue.mjs';
 import { getPolicyEngine } from './src/core/policyEngine.mjs';
@@ -103,13 +116,26 @@ function safeJsonParse(maybeText) {
   return null;
 }
 
-function asArray(value) {
-  // Safe coercion to array
-  if (Array.isArray(value)) return value;
-  if (value == null) return [];
-  return [value];
+function getOutputText(resp) {
+  // OpenAI Responses SDK usually provides output_text
+  if (resp && typeof resp.output_text === 'string' && resp.output_text.trim()) return resp.output_text;
+  // Fallback: scan resp.output content blocks
+  const out = resp?.output;
+  if (Array.isArray(out)) {
+    let buf = "";
+    for (const item of out) {
+      const cs = item?.content;
+      if (Array.isArray(cs)) {
+        for (const c of cs) {
+          if (typeof c?.text === "string") buf += c.text;
+          if (typeof c?.output_text === "string") buf += c.output_text;
+        }
+      }
+    }
+    if (buf.trim()) return buf;
+  }
+  return "";
 }
-
 const PM_SYSTEM_PROMPT = `
 You are a precise PM agent. Respond with ONLY a single JSON object; no markdown, no code fences.
 
@@ -1463,9 +1489,10 @@ app.get('/api/compliance/status', (req, res) => {
 // OPEN-ONLY: This endpoint is disabled in open release
 app.get('/api/compliance/passive', (req, res) => {
   res.status(501).json({ 
-    error: 'Not implemented in Open Core',
+    error: 'Compliance analytics not available in Community',
     feature: 'Passive compliance from platform SSOT',
-    requires: 'paid-platform module'
+    upgrade: 'Shipyard Pro adds team compliance dashboards, policy audit trails, and SOC2-ready exports.',
+    docs: 'https://shipyard.sh/docs/compliance'
   });
 });
 
@@ -1474,72 +1501,80 @@ app.get('/api/compliance/passive', (req, res) => {
 // GET /api/platform/auth/me - Current user (OPEN-ONLY: Disabled)
 app.get('/api/platform/auth/me', (req, res) => {
   res.status(501).json({ 
-    error: 'Not implemented in Open Core',
-    feature: 'Platform authentication',
-    requires: 'paid-platform module'
+    error: 'Team authentication not available in Community',
+    feature: 'Platform user identity and SSO',
+    upgrade: 'Shipyard Pro adds role-based access control (RBAC), OAuth/SAML, and team entitlements.',
+    docs: 'https://shipyard.sh/docs/auth'
   });
 });
 
 // GET /api/platform/entitlements - Get entitlements (OPEN-ONLY: Disabled)
 app.get('/api/platform/entitlements', (req, res) => {
   res.status(501).json({ 
-    error: 'Not implemented in Open Core',
-    feature: 'Entitlement management',
-    requires: 'paid-platform module'
+    error: 'Entitlements not available in Community',
+    feature: 'Team role-based access control',
+    upgrade: 'Shipyard Pro enforces who can approve dangerous commands, view audit logs, and manage team permissions.',
+    docs: 'https://shipyard.sh/docs/entitlements'
   });
 });
 
 // POST /api/platform/admin/entitlements/grant - Grant entitlement (OPEN-ONLY: Disabled)
 app.post('/api/platform/admin/entitlements/grant', express.json(), (req, res) => {
   res.status(501).json({ 
-    error: 'Not implemented in Open Core',
-    feature: 'Grant entitlements',
-    requires: 'paid-platform module'
+    error: 'Role grants not available in Community',
+    feature: 'Grant team roles and permissions',
+    upgrade: 'Shipyard Pro lets admins grant PM, Engineer, and Reviewer roles with fine-grained approval permissions.',
+    docs: 'https://shipyard.sh/docs/admin'
   });
 });
 
 // POST /api/platform/admin/entitlements/revoke - Revoke entitlement (OPEN-ONLY: Disabled)
 app.post('/api/platform/admin/entitlements/revoke', express.json(), (req, res) => {
   res.status(501).json({ 
-    error: 'Not implemented in Open Core',
-    feature: 'Revoke entitlements',
-    requires: 'paid-platform module'
+    error: 'Role revocation not available in Community',
+    feature: 'Revoke team roles and permissions',
+    upgrade: 'Shipyard Pro lets admins revoke access instantly when team members leave.',
+    docs: 'https://shipyard.sh/docs/admin'
   });
 });
 
 // POST /api/platform/events - Ingest event (OPEN-ONLY: Disabled)
 app.post('/api/platform/events', express.json(), (req, res) => {
   res.status(501).json({ 
-    error: 'Not implemented in Open Core',
-    feature: 'Platform event ingestion',
-    requires: 'paid-platform module'
+    error: 'Event ingestion not available in Community',
+    feature: 'Send events to platform analytics',
+    upgrade: 'Shipyard Pro ingests audit events for cross-project analytics, cost rollups, and compliance reporting.',
+    docs: 'https://shipyard.sh/docs/events'
   });
 });
 
 // GET /api/platform/admin/events - Query events (OPEN-ONLY: Disabled)
 app.get('/api/platform/admin/events', (req, res) => {
   res.status(501).json({ 
-    error: 'Not implemented in Open Core',
-    feature: 'Platform event querying',
-    requires: 'paid-platform module'
+    error: 'Event querying not available in Community',
+    feature: 'Query team audit events across projects',
+    upgrade: 'Shipyard Pro provides full-text search over audit logs, filterable by user, date, project, and outcome.',
+    docs: 'https://shipyard.sh/docs/events'
   });
 });
 
 // GET /api/platform/admin/metrics - Get metrics (OPEN-ONLY: Disabled)
 app.get('/api/platform/admin/metrics', (req, res) => {
   res.status(501).json({ 
-    error: 'Not implemented in Open Core',
-    feature: 'Metrics calculation',
-    requires: 'paid-platform module'
+    error: 'Usage metrics not available in Community',
+    feature: 'Team usage analytics and cost forecasts',
+    upgrade: 'Shipyard Pro tracks cost by user/project/date, forecasts quarterly spend, and alerts on budget variance.',
+    docs: 'https://shipyard.sh/docs/analytics'
   });
 });
 
 // GET /api/platform/admin/compliance - Get compliance (OPEN-ONLY: Disabled)
 app.get('/api/platform/admin/compliance', (req, res) => {
   res.status(501).json({ 
-    error: 'Not implemented in Open Core',
-    feature: 'Platform compliance status',
-    requires: 'paid-platform module'
+    error: 'Compliance dashboards not available in Community',
+    feature: 'Team compliance status and audit reports',
+    upgrade: 'Shipyard Pro exports SOC2-ready compliance reports, tracks policy violations by user, and integrates with audit systems.',
+    docs: 'https://shipyard.sh/docs/compliance'
   });
 });
 
@@ -1715,7 +1750,7 @@ async function triggerSummaryUpdate(project) {
   }
 }
 
-wss.on('connection', (ws) => {
+wss.on('connection', async (ws) => {
     // Safety net: never crash on per-socket error
   ws.on('error', (err) => {
     try { console.error('[ws] error:', (err && err.code) ? err.code : err); } catch {}
@@ -1723,14 +1758,23 @@ wss.on('connection', (ws) => {
 
 const currentState = loadState();
   let activeProjectId = PROJECTS.map.has(currentState.project) ? currentState.project : (PROJECTS.list[0]?.id || 'default');
-  let term = createTerm(activeProjectId);
+  let term = await createTerm(activeProjectId);
   let sub = null;
 
-  function attach(projectId) {
+  async function attach(projectId) {
     activeProjectId = projectId;
     if (sub && typeof sub.dispose === 'function') sub.dispose();
     if (term && typeof term.kill === 'function') term.kill();
-    term = createTerm(activeProjectId);
+    term = await createTerm(activeProjectId);
+    if (!term) {
+      // PTY unavailable, send error message
+      ws.send(JSON.stringify({
+        type: 'term:error',
+        error: 'PTY_DISABLED',
+        message: 'Terminal features require node-pty. Set DISABLE_PTY=1 acknowledged; terminal unavailable.'
+      }));
+      return;
+    }
 
     sub = term.onData((data) => {
       if (ws.readyState === 1) ws.send(JSON.stringify({ type: 'term:data', data }));
@@ -1762,6 +1806,15 @@ const currentState = loadState();
   } catch (e) {}
   attach(activeProjectId);
 
+  // Guard: if term is unavailable after initial creation, notify client
+  if (!term) {
+    ws.send(JSON.stringify({
+      type: 'term:error',
+      error: 'PTY_DISABLED',
+      message: 'Terminal features unavailable (node-pty disabled or failed to load)'
+    }));
+  }
+
   ws.on('message', async (raw) => {
     const msg = safeJsonParse(raw);
     // MSG_GUARD_INSERTED: ws message may be empty / not-json / not-object
@@ -1773,6 +1826,14 @@ const currentState = loadState();
     if (msg.type === 'pm') msg.type = 'pm:ask';
 
     if (msg && msg.type === 'term:write') {
+      if (!term) {
+        ws.send(JSON.stringify({
+          type: 'term:error',
+          error: 'PTY_DISABLED',
+          message: 'Terminal write failed: PTY unavailable'
+        }));
+        return;
+      }
       term.write(msg.data);
       return;
     }

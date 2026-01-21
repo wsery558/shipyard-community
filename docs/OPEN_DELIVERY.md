@@ -39,6 +39,13 @@ node server.mjs
 
 Server starts on **http://localhost:8788**
 
+**Environment Variables:**
+- `PORT` — Server port (default: 8788)
+- `DISABLE_PTY=1` — Disable terminal features (useful for CI/headless environments; node-pty will not be loaded)
+- `OPENAI_API_KEY` — Optional; enables AI-powered features (not required for open-core)
+
+**Note:** Terminal features require the `node-pty` native module. If you encounter issues loading node-pty (e.g., in Docker, CI, or headless environments), set `DISABLE_PTY=1` to run without terminal support. All core endpoints (/health, /api/state, /api/projects) remain fully functional.
+
 ### First Run
 
 1. Open http://localhost:8788 in browser
@@ -164,10 +171,6 @@ These include:
 # Port (default 8788)
 PORT=8788
 
-# Disable terminal features (node-pty) for CI/headless environments
-# Useful when native PTY binding is unavailable
-DISABLE_PTY=1
-
 # Data directory (default ./data)
 DATA_DIR=./data
 
@@ -177,8 +180,6 @@ LOG_LEVEL=debug
 # No auth mode (default true)
 NO_AUTH=true
 ```
-
-**Note:** Terminal features in the web UI require `node-pty`, which may not be available in all environments (e.g., GitHub Actions CI, containerized deployments). Set `DISABLE_PTY=1` to disable PTY and run core features without it. The /health, /api/state, and /api/projects endpoints will continue to work normally.
 
 ### Default Plans
 

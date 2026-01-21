@@ -2,34 +2,76 @@
 
 [![CI](https://github.com/wsery558/shipyard-community/actions/workflows/ci.yml/badge.svg)](https://github.com/wsery558/shipyard-community/actions/workflows/ci.yml)
 
+**Shipyard Community: Local-first delivery governance without the team features.**
+
 Local-first open-core snapshot of Agent Dashboard. This build runs without platform services or API keys; all paid/platform endpoints return HTTP 501 by design so you can lean on the open-source workflow without accidentally invoking gated services.
 
-## What it is
-Agent Dashboard Open Core delivers the orchestrator, data stores, and React UI you need to explore the project + run lifecycle locally. Everything runs from the repo, static `ui-dist`, and file-backed `./data` stores; the snapshot omits platform/paid APIs (they intentionally return 501) so the experience stays self-contained.
+---
+
+## The Problem You're Solving
+
+Pain → Proof → Upgrade (5-minute path):
+- **Pain (accountability, audit trail, repeatability)**: You need traceable runs, verifiable failures, and visible cost control.
+- **Proof (Community)**: Run locally, show on-screen logs and artifacts to demonstrate what happened.
+- **Upgrade (Pro)**: Exportable **Activity Export**, **Evidence Bundle**, and **Spec Vault** so you can prove what ran, what changed, what it cost, and how it passed compliance.
+
+You need **three things** to ship reliably:
+1. **Traceable runs**: Every task start, policy decision, approval, and completion is timestamped and logged. When something fails, you know exactly what happened.
+2. **Verifiable failures**: Failed tasks show the command, patch, and output. Bad changes never reach production because policy gates require approval for dangerous operations.
+3. **Visible cost control**: Every API call is attributed to a model and project. Budget limits are enforced; overage is prevented. Your team knows what delivery costs.
+
+**Community solves all three locally.** Pro solves them for your team at scale.
+
+**Community helps you run. Pro helps you prove.**
+
+👉 **[See all three in action → 5-Minute Demo](docs/DEMO_5MIN.md)** ⏱️
+
+---
 
 ## Shipyard: Delivery Governance, Not Chat
 
 Shipyard is built for **reliable delivery**—not conversation. You get a replayable, verifiable, shippable workflow:
-- **Replayable**: Every project run is logged and timestamped; any step can be re-executed with the same inputs.
-- **Verifiable**: Compliance, safety gates, budget guards, and compliance reporting ensure nothing ships unvetted.
-- **Shippable**: The orchestrator handles the full project lifecycle: plan, execute, report, and archive.
+- **Replayable**: Every project run is logged and timestamped; any step can be re-executed with the same inputs. See [Audit Trail →](docs/EVIDENCE_PACK.md#proof-point-1-complete-audit-trail-traceable-runs)
+- **Verifiable**: Compliance, safety gates, budget guards, and compliance reporting ensure nothing ships unvetted. See [Policy Gates →](docs/EVIDENCE_PACK.md#proof-point-2-policy-gates-fail-fast-verification)
+- **Shippable**: The orchestrator handles the full project lifecycle: plan, execute, report, and archive. See [Cost Control →](docs/EVIDENCE_PACK.md#proof-point-4-cost-tracking--budget-control-visible-cost)
 
 Unlike code assistants or chat-based tools, Shipyard **governs delivery** from request through archive, so your team can trust what ships.
 
-## Community vs Pro
+## Community vs Pro: Know What You're Getting
 
-| Feature | Community (This Build) | Shipyard Pro |
-|---------|------------------------|--------------|
-| **Local Orchestrator** | ✅ Full | ✅ Full |
-| **Project Management** | ✅ Yes | ✅ Yes |
-| **Run Lifecycle** | ✅ Yes | ✅ Yes |
-| **Compliance Reports** | ✅ Yes | ✅ Enhanced |
-| **Platform Auth** | ❌ 501 (intentional) | ✅ Yes |
-| **Team Entitlements** | ❌ 501 (intentional) | ✅ Yes |
-| **Usage Analytics** | ❌ 501 (intentional) | ✅ Full |
-| **Admin Governance** | ❌ 501 (intentional) | ✅ Full |
+**Community delivers**: Traceable runs, fail-fast gates, visible cost. Single-project, local-only.
 
-The `501` responses are **by design**: Community is the open-core entry point. Pro adds platform governance, team management, and analytics.
+**Pro adds team governance**: Shared audit trail, role-based approval, team budgets, compliance reports, cross-project oversight.
+
+| Feature | Community (This Build) | Pro | Why |
+|---------|---|---|---|
+| **Audit Trail** | ✅ Local logs (JSON) | ✅ + Team-wide search, retention proof | Compliance: prove policy decisions |
+| **Policy Gates** | ✅ Dangerous commands require approval | ✅ + Role-based (Seniors only), escalation | Governance: enforce org standards |
+| **Budget Control** | ✅ Per-project budget limit | ✅ + Team pools, cost attribution, alerts | Cost control: spend predictably |
+| **Artifacts** | ✅ Patches, output, error logs | ✅ + Indexed, searchable, auto-retention | Debugging: find what failed quickly |
+| **Reports** | ✅ CSV/PDF export (manual) | ✅ + One-click compliance PDF, legal grade | Audits: SOC2-ready format |
+| **Evidence Output (Governance Proof)** | 📺 On-screen logs; manual screenshots (no export package) | 📦 **Activity Export** + **Evidence Bundle** + **Spec Vault** | Prove what ran, changed, cost, and passed compliance in a shareable package |
+| **Real-Time** | ✅ Live dashboard (localhost) | ✅ + Team shared, role-based visibility, alerts | Collaboration: everyone sees status |
+| **Platform Auth** | ❌ 501 (not needed locally) | ✅ SSO, SAML, OAuth | Enterprise: scale beyond founders |
+| **Team Entitlements** | ❌ 501 (all-or-nothing) | ✅ Role-based access (PM, Engineer, Admin) | Multi-team: who can do what |
+
+**The `501` responses are intentional**: Community is the open-core entry point. Pro adds platform governance, team management, and enterprise scale.
+
+### When to Upgrade to Pro
+
+**Stay on Community if:**
+- You're building solo or with one other person
+- All users have server SSH/console access
+- You're managing cost in spreadsheets
+- Audit logs are for your own reference
+
+**Upgrade to Pro if:**
+- Your team has >2 people and doesn't all have server access
+- You need to prove compliance to customers (SOC2, ISO)
+- Cost attribution by user/date is required
+- You want policy gates enforced by role, not honor system
+
+👉 **[Try Pro for 14 days (free) →](#contact-sales)** or **[See detailed comparison](docs/DEMO_5MIN.md)**
 
 ## Quickstart
 
