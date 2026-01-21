@@ -7,6 +7,30 @@ Local-first open-core snapshot of Agent Dashboard. This build runs without platf
 ## What it is
 Agent Dashboard Open Core delivers the orchestrator, data stores, and React UI you need to explore the project + run lifecycle locally. Everything runs from the repo, static `ui-dist`, and file-backed `./data` stores; the snapshot omits platform/paid APIs (they intentionally return 501) so the experience stays self-contained.
 
+## Shipyard: Delivery Governance, Not Chat
+
+Shipyard is built for **reliable delivery**—not conversation. You get a replayable, verifiable, shippable workflow:
+- **Replayable**: Every project run is logged and timestamped; any step can be re-executed with the same inputs.
+- **Verifiable**: Compliance, safety gates, budget guards, and compliance reporting ensure nothing ships unvetted.
+- **Shippable**: The orchestrator handles the full project lifecycle: plan, execute, report, and archive.
+
+Unlike code assistants or chat-based tools, Shipyard **governs delivery** from request through archive, so your team can trust what ships.
+
+## Community vs Pro
+
+| Feature | Community (This Build) | Shipyard Pro |
+|---------|------------------------|--------------|
+| **Local Orchestrator** | ✅ Full | ✅ Full |
+| **Project Management** | ✅ Yes | ✅ Yes |
+| **Run Lifecycle** | ✅ Yes | ✅ Yes |
+| **Compliance Reports** | ✅ Yes | ✅ Enhanced |
+| **Platform Auth** | ❌ 501 (intentional) | ✅ Yes |
+| **Team Entitlements** | ❌ 501 (intentional) | ✅ Yes |
+| **Usage Analytics** | ❌ 501 (intentional) | ✅ Full |
+| **Admin Governance** | ❌ 501 (intentional) | ✅ Full |
+
+The `501` responses are **by design**: Community is the open-core entry point. Pro adds platform governance, team management, and analytics.
+
 ## Quickstart
 
 ### Requirements
@@ -78,6 +102,9 @@ These stubs signal intentionally omitted paid/platform features.
 - `pnpm lint` – permissive lint pass over `.js`/`.mjs`/`.jsx`; emits warnings but exits 0.
 - `pnpm typecheck` – stub: prints “No TypeScript typecheck (JS project)”.
 - `pnpm test:unit` – stub: prints “No unit tests in open-core snapshot”.
+## Delivery Governance Demo
+
+See [DELIVERY.md](DELIVERY.md) for a walkthrough of how governance works: smoke checks, run summaries, cost tracking (Pro feature), and audit logs.
 
 ## Contributing & policies
 - Contribution guide: [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md)
