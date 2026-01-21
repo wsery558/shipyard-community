@@ -25,18 +25,6 @@ function getOpenAI() {
   }
 }
 
-function requireOpenAI(res) {
-  const c = getOpenAI();
-  if (!c) {
-    res.status(501).json({
-      ok: false,
-      error: "OPENAI_DISABLED",
-      message: "This feature requires OPENAI_API_KEY. Open Core defaults to offline mode."
-    });
-    return null;
-  }
-  return c;
-}
 
 /* __PTY_OPTIONAL_V1__ */
 // Terminal features (node-pty) are OPTIONAL. Server must boot without node-pty.
@@ -65,16 +53,14 @@ async function getPty() {
 // Open Core imports (local orchestrator)
 import { isDangerousBash } from './src/core/safety.mjs';
 import { checkBudgetExceeded as checkBudgetCore } from './src/core/budget.mjs';
-import { mergePlans, computeProgress } from './src/core/plan.mjs';
-import { startRunSession, stopRunSession, getCurrentRunSessionId, logEvent as logEventCore, getRunEvents, getLatestRunSessionId, listRunSessions, truncateOutput } from './src/core/runlog.mjs';
+import { startRunSession, stopRunSession, getCurrentRunSessionId, logEvent as logEventCore, getRunEvents, getLatestRunSessionId, listRunSessions } from './src/core/runlog.mjs';
 import { buildMarkdownReport } from './src/core/report.mjs';
 import { getStorageClient, initializeStorage } from './src/core/storage.mjs';
-import { once } from 'node:events';
 import { CommandHeartbeat } from './src/core/heartbeat.mjs';
 import { getStallWatchdog } from './src/core/stallWatchdog.mjs';
 import { detectVerifyCmds, runVerification } from './src/core/autoVerify.mjs';
 import { createContextSnapshot } from './src/core/contextPack.mjs';
-import { buildSummary, buildOfflineSummary } from './src/core/summary.mjs';
+import { buildSummary } from './src/core/summary.mjs';
 import { cleanupArtifacts } from './src/core/artifactManager.mjs';
 import { getQueueManager } from './src/core/projectQueue.mjs';
 import { getPolicyEngine } from './src/core/policyEngine.mjs';
@@ -117,26 +103,13 @@ function safeJsonParse(maybeText) {
   return null;
 }
 
-function getOutputText(resp) {
-  // OpenAI Responses SDK usually provides output_text
-  if (resp && typeof resp.output_text === 'string' && resp.output_text.trim()) return resp.output_text;
-  // Fallback: scan resp.output content blocks
-  const out = resp?.output;
-  if (Array.isArray(out)) {
-    let buf = "";
-    for (const item of out) {
-      const cs = item?.content;
-      if (Array.isArray(cs)) {
-        for (const c of cs) {
-          if (typeof c?.text === "string") buf += c.text;
-          if (typeof c?.output_text === "string") buf += c.output_text;
-        }
-      }
-    }
-    if (buf.trim()) return buf;
-  }
-  return "";
+function asArray(value) {
+  // Safe coercion to array
+  if (Array.isArray(value)) return value;
+  if (value == null) return [];
+  return [value];
 }
+
 const PM_SYSTEM_PROMPT = `
 You are a precise PM agent. Respond with ONLY a single JSON object; no markdown, no code fences.
 
