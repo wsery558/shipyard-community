@@ -23,7 +23,7 @@ Project maintainers are responsible for clarifying and enforcing our standards o
 This Code of Conduct applies within project spaces and when an individual is officially representing the project.
 
 ## Enforcement
-Report violations to **maintainers@example.com**. All complaints will be reviewed and investigated promptly and fairly.
+Report violations to **tsaielectro0628@gmail.com**. All complaints will be reviewed and investigated promptly and fairly.
 
 ## Attribution
 This Code of Conduct is adapted from the Contributor Covenant, version 2.1.

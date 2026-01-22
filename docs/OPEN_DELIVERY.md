@@ -494,7 +494,7 @@ The full **Agent Dashboard** (with paid features):
 - Compliance audit trails
 - Professional support
 
-Contact: sales@example.com
+Contact: sales@shipyard.tsaielectro.com/en
 
 ---
 
@@ -577,7 +577,7 @@ EOF
 ### Getting Help
 
 - 📖 See [CONTRIBUTING.md](docs/CONTRIBUTING.md) for development
-- 🔒 Security issues: security@example.com
+- 🔒 Security issues: tsaielectro0628@gmail.com
 - 🐛 Bug reports: GitHub Issues (coming soon)
 - 💬 Discussions: GitHub Discussions (coming soon)
 
@@ -595,8 +595,8 @@ See [CONTRIBUTING.md](docs/CONTRIBUTING.md) for details.
 ### Commercial Support
 
 For production deployments, licensing, or custom integrations:
-- Contact: support@example.com
-- Website: https://example.com
+- Contact: support@shipyard.tsaielectro.com/en
+- Website: https://shipyard.tsaielectro.com/en
 
 ---
 

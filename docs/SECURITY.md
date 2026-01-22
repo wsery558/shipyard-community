@@ -48,7 +48,7 @@ pnpm audit:open
 
 If you find a security issue in the open-core code:
 1. **Do NOT** open a public issue
-2. Email security@example.com with:
+2. Email tsaielectro0628@gmail.com with:
    - Description of the issue
    - Steps to reproduce
    - Potential impact

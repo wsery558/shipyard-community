@@ -1,0 +1,49 @@
+name: Quickstart problem
+description: I got stuck during setup or smoke/activation.
+title: "[Quickstart] "
+labels: ["quickstart", "bug"]
+body:
+  - type: dropdown
+    id: os
+    attributes:
+      label: OS
+      options: [macOS, Windows, "Windows + WSL", Linux]
+    validations: { required: true }
+
+  - type: input
+    id: node
+    attributes: { label: "Node version", placeholder: "e.g. 20.11.1" }
+    validations: { required: true }
+
+  - type: input
+    id: pnpm
+    attributes: { label: "pnpm version", placeholder: "e.g. 9.15.0" }
+    validations: { required: true }
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1) git clone ...
+        2) pnpm install
+        3) pnpm smoke
+    validations: { required: true }
+
+  - type: textarea
+    id: output
+    attributes:
+      label: Output / logs
+      render: shell
+      description: Paste the last ~60 lines of output.
+    validations: { required: true }
+
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Checklist
+      options:
+        - label: I read the Quickstart + Activation section in README.
+          required: true
+        - label: I searched existing issues first.
+          required: true
