@@ -494,7 +494,7 @@ The full **Agent Dashboard** (with paid features):
 - Compliance audit trails
 - Professional support
 
-Contact: sales@shipyard.tsaielectro.com/en
+Contact: tsaielectro0628@gmail.com
 
 ---
 
@@ -595,8 +595,8 @@ See [CONTRIBUTING.md](docs/CONTRIBUTING.md) for details.
 ### Commercial Support
 
 For production deployments, licensing, or custom integrations:
-- Contact: support@shipyard.tsaielectro.com/en
-- Website: https://shipyard.tsaielectro.com/en
+- Contact: tsaielectro0628@gmail.com
+- Website: https://shipyard.tsaielectro.com/en/
 
 ---
 
