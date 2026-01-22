@@ -2,7 +2,7 @@
 
 ## Open Core Release
 
-This is the **open-source core** of Agent Dashboard. It contains no authentication, no remote connectivity, and no external dependencies beyond standard Node.js modules.
+This is the **open-source core** of Shipyard Community. It contains no authentication, no remote connectivity, and no external dependencies beyond standard Node.js modules.
 
 ### What's NOT Included
 
