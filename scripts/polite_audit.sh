@@ -28,13 +28,12 @@ else
 fi
 echo ""
 
-# Check 2: No unexpected emails (allow tsaielectro0628@gmail.com in docs)
 echo "2️⃣  Checking for real email addresses..."
-REAL_EMAILS=
+REAL_EMAILS=$(git ls-files -z | xargs -0 grep -I -o -h -E '[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}' 2>/dev/null | sort -u | grep -v '^tsaielectro0628@gmail\.com$' || true)
 if [ -z "$REAL_EMAILS" ]; then
-  echo -e "   ${GREEN}✅ PASS${NC} — No real email addresses found"
+  echo -e "   ${GREEN}✅ PASS${NC} — Only allowlisted email addresses found"
 else
-  echo -e "   ${RED}❌ FAIL${NC} — Real email addresses detected:"
+  echo -e "   ${RED}❌ FAIL${NC} — Unexpected email addresses detected:"
   echo "$REAL_EMAILS" | head -5
   FAIL_COUNT=$((FAIL_COUNT + 1))
 fi

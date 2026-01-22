@@ -107,7 +107,7 @@ res.status(501).json({
   error: 'Team authentication not available in Community',
   feature: 'Platform user identity and SSO',
   upgrade: 'Shipyard Pro adds role-based access control (RBAC), OAuth/SAML, and team entitlements.',
-  docs: 'https://shipyard.sh/docs/auth'
+  docs: 'https://shipyard.tsaielectro.com/en/'
 });
 ```
 

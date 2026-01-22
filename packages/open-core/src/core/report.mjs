@@ -99,7 +99,7 @@ export function buildMarkdownReport({ project, plan, cost, events, runSessionId 
   const sessionCost = extractSessionCostSnapshot(events, cost);
   
   // Header
-  lines.push('# Agent Dashboard Run Report');
+  lines.push('# Shipyard Community Run Report');
   lines.push('');
   lines.push(`**Project:** ${project || 'unknown'}`);
   lines.push(`**Run Session ID:** ${runSessionId || 'unknown'}`);
