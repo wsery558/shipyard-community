@@ -15,7 +15,7 @@ When you run `pnpm -s test:smoke`, the system validates:
 **Example output:**
 ```
 Testing on http://127.0.0.1:41189...
-✅ /health: {"ok":true,"name":"agent-dashboard","version":"4.9.0-rc1"}
+✅ /health: {"ok":true,"name":"shipyard-community","version":"4.9.0-rc1"}
 ✅ /api/state: {"total":30,"current":"agent-dashboard 狀態同步 40%",...}
 ✅ /api/projects: 5 projects
 ✅ smoke: all checks passed
@@ -31,9 +31,9 @@ A typical run snapshot includes:
 
 ```json
 {
-  "orchestrator": "agent-dashboard",
+  "orchestrator": "shipyard-community",
   "projects": [
-    { "id": "agent-dashboard", "name": "Agent Dashboard", "status": "ready" },
+    { "id": "shipyard-community", "name": "Shipyard Community", "status": "ready" },
     { "id": "demo-project", "name": "Demo Project", "status": "queued" },
     { "id": "p4", "name": "Project P4", "status": "pending" }
   ],
@@ -125,7 +125,7 @@ Delivery governance answers these questions:
 ## Next Steps
 
 - Run the demo: `bash scripts/demo_30min.sh`
-- Inspect run logs: `cat ./data/runs/agent-dashboard.jsonl | jq`
+- Inspect run logs: `cat ./data/runs/shipyard-community.jsonl | jq`
 - Try a custom project: add to `./data/projects.json` and re-run
 - Upgrade to Pro: governance layer + team management + compliance
 

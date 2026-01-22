@@ -4,7 +4,7 @@
 
 ### ✅ Completion Status
 
-Your `agent-dashboard-open` is now production-ready for OSS distribution. A new developer can:
+Your `shipyard-community` is now production-ready for OSS distribution. A new developer can:
 
 1. **Read README** (3 min) → understand what it is, what's included, what's not
 2. **Install & Build** (2 min) → `pnpm install && pnpm build`
@@ -97,7 +97,7 @@ package.json
 ## 🚀 Try It Yourself (30-min test)
 
 ```bash
-cd /home/ken/code/agent-dashboard-open
+cd /home/ken/code/shipyard-community
 
 # 1. Read guide (3 min)
 cat README.md

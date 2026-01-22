@@ -9,7 +9,7 @@
   },
   {
     "id": "agent-dashboard",
-    "label": "Agent Dashboard",
+    "label": "Shipyard Community",
     "cwd": "/home/ken/code/agent-dashboard",
     "testCmd": "pnpm -s test || echo 'No tests yet'",
     "deployCmd": "pnpm build && echo 'Built'",

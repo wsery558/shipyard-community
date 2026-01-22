@@ -1,9 +1,9 @@
 <!-- OSS READINESS COMPLETION REPORT -->
 
-# OSS Readiness: agent-dashboard-open ✅
+# OSS Readiness: shipyard-community ✅
 
 ## Overview
-Successfully elevated agent-dashboard-open to **"陌生高手 30 分鐘內跑起來"** status. All essential gates now pass, with clear documentation of open-core vs paid boundaries.
+Successfully elevated shipyard-community to **"陌生高手 30 分鐘內跑起來"** status. All essential gates now pass, with clear documentation of open-core vs paid boundaries.
 
 ---
 
@@ -150,7 +150,7 @@ A new developer can now:
 
 1. **Clone & Install** (2 min)
    ```bash
-   cd agent-dashboard-open
+   cd shipyard-community
    pnpm install
    ```
 

@@ -193,7 +193,7 @@ min 12-30: Explore, read docs, understand boundaries
 
 ```bash
 # Clone (assuming done)
-# cd /home/ken/code/agent-dashboard-open
+# cd /home/ken/code/shipyard-community
 
 # Install
 pnpm install
