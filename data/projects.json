@@ -1,7 +1,42 @@
 [
-  { "id": "demo-project", "label": "🎯 Demo Project", "cwd": "./demo-project", "testCmd": "node --test test/*.test.mjs", "deployCmd": "node scripts/demo_deploy.mjs", "previewUrl": "https://demo.shipyard.tsaielectro.com/en/preview" },
-  { "id": "agent-dashboard", "label": "Agent Dashboard", "cwd": "/home/ken/code/agent-dashboard", "testCmd": "pnpm -s test || echo 'No tests yet'", "deployCmd": "pnpm build && echo 'Built'", "previewUrl": "http://localhost:8788" },
-  { "id": "dailyos", "label": "DailyOS", "cwd": "/home/ken/code/dailyos", "testCmd": "pnpm test", "deployCmd": "pnpm deploy", "previewUrl": "https://dailyos.shipyard.tsaielectro.com/en" },
-  { "id": "ktv-pwa", "label": "KTV PWA", "cwd": "/home/ken/code/ktv-pwa", "testCmd": "pnpm test", "deployCmd": "pnpm deploy", "previewUrl": "https://ktv-pwa.shipyard.tsaielectro.com/en" },
-  { "id": "engineer-platform", "label": "Engineer Platform", "cwd": "/home/ken/code/engineer-platform", "testCmd": "pnpm test", "deployCmd": "pnpm deploy", "previewUrl": "https://engineer-platform.shipyard.tsaielectro.com/en" }
+  {
+    "id": "demo-project",
+    "label": "🎯 Demo Project",
+    "cwd": "./demo-project",
+    "testCmd": "node --test test/*.test.mjs",
+    "deployCmd": "node scripts/demo_deploy.mjs",
+    "previewUrl": ""
+  },
+  {
+    "id": "agent-dashboard",
+    "label": "Agent Dashboard",
+    "cwd": "/home/ken/code/agent-dashboard",
+    "testCmd": "pnpm -s test || echo 'No tests yet'",
+    "deployCmd": "pnpm build && echo 'Built'",
+    "previewUrl": ""
+  },
+  {
+    "id": "dailyos",
+    "label": "DailyOS",
+    "cwd": "/home/ken/code/dailyos",
+    "testCmd": "pnpm test",
+    "deployCmd": "pnpm deploy",
+    "previewUrl": ""
+  },
+  {
+    "id": "ktv-pwa",
+    "label": "KTV PWA",
+    "cwd": "/home/ken/code/ktv-pwa",
+    "testCmd": "pnpm test",
+    "deployCmd": "pnpm deploy",
+    "previewUrl": ""
+  },
+  {
+    "id": "engineer-platform",
+    "label": "Engineer Platform",
+    "cwd": "/home/ken/code/engineer-platform",
+    "testCmd": "pnpm test",
+    "deployCmd": "pnpm deploy",
+    "previewUrl": ""
+  }
 ]
