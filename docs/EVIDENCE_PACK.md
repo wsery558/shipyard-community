@@ -32,7 +32,7 @@ Pain → Proof → Upgrade (5-minute path):
    
 2. **Timestamps precision**: Show that each row is machine-readable (ISO 8601), sortable, and queryable by date range.
 
-3. **Actor tracking**: Show approver column (e.g., "alice@company.com" or "SYSTEM" for automatic gates).
+3. **Actor tracking**: Show approver column (e.g., "alice (approver)" or "SYSTEM" for automatic gates).
 
 ### Reproduction steps
 ```bash
