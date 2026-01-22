@@ -1,8 +1,8 @@
-# Contributing to Agent Dashboard
+# Contributing to Shipyard Community
 
 ## Code Organization
 
-Agent Dashboard uses a **mono-repository** structure to isolate open-core and paid-platform code:
+Shipyard Community uses a **mono-repository** structure to isolate open-core and paid-platform code:
 
 ```
 packages/
@@ -70,7 +70,7 @@ This:
 3. Creates tarball with only open-core
 4. Includes OPEN_DELIVERY.md, LICENSE, SECURITY.md
 
-Output: `agent-dashboard-open-v0.1.tar.gz`
+Output: `shipyard-community-open-v0.1.tar.gz`
 
 ### Release Notes
 
