@@ -576,7 +576,7 @@ EOF
 
 ### Getting Help
 
-- 📖 See [CONTRIBUTING.md](docs/CONTRIBUTING.md) for development
+- 📖 See [CONTRIBUTING.md](CONTRIBUTING.md) for development
 - 🔒 Security issues: tsaielectro0628@gmail.com
 - 🐛 Bug reports: GitHub Issues (coming soon)
 - 💬 Discussions: GitHub Discussions (coming soon)
@@ -590,7 +590,7 @@ The open-core is **community-driven**. Contributions welcome!
 3. Run `pnpm test` to verify
 4. Submit PR with description
 
-See [CONTRIBUTING.md](docs/CONTRIBUTING.md) for details.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
 ### Commercial Support
 
@@ -668,7 +668,7 @@ POST   /api/projects/:id/plan
 ✅ docs/OPEN_DELIVERY.md (this file)
 ✅ docs/LICENSE (1 KB, MIT)
 ✅ docs/SECURITY.md (3 KB)
-✅ docs/CONTRIBUTING.md (4 KB)
+✅ CONTRIBUTING.md (4 KB)
 
 Total: ~680 KB compressed
 ```
@@ -692,4 +692,4 @@ Total: ~680 KB compressed
 **Status:** Production Ready  
 **License:** MIT
 
-For the latest version and updates, visit: https://github.com/example/shipyard-community
+For the latest version and updates, visit: https://github.com/wsery558/shipyard-community

@@ -4,7 +4,7 @@ This folder holds the **visual proof** that Community solves the three core prob
 
 ## Proof Points to Capture
 
-Use the guide in [docs/EVIDENCE_PACK.md](../../docs/EVIDENCE_PACK.md) to record or screenshot each proof. Place files in the subdirectories below.
+Use the guide in [../../docs/EVIDENCE_PACK.md](../../docs/EVIDENCE_PACK.md) to record or screenshot each proof. Place files in the subdirectories below.
 
 ---
 
@@ -202,14 +202,14 @@ Use the guide in [docs/EVIDENCE_PACK.md](../../docs/EVIDENCE_PACK.md) to record 
 These proof points are referenced in:
 - [README.md](../../README.md#why-pro) — Why Pro section
 - [docs/DEMO_5MIN.md](../../docs/DEMO_5MIN.md) — 5-minute walkthrough
-- [docs/EVIDENCE_PACK.md](../../docs/EVIDENCE_PACK.md) — Detailed proof points
+- [../../docs/EVIDENCE_PACK.md](../../docs/EVIDENCE_PACK.md) — Detailed proof points
 
 **Link from README**: Add to README after "Why Pro" section:
 ```markdown
 ## See It in Action
 
-[Evidence pack with screenshots →](docs/EVIDENCE_PACK.md)  
-[5-minute video demo →](public/demo/) (coming soon)
+[Evidence pack with screenshots →](../../docs/EVIDENCE_PACK.md)  
+[5-minute video demo →](./) (coming soon)
 ```
 
 ---
@@ -228,4 +228,4 @@ These proof points are referenced in:
 ---
 
 *Last updated: 2026-01-22*
-*Instructions for capturing proof points: See [docs/EVIDENCE_PACK.md](../../docs/EVIDENCE_PACK.md)*
+*Instructions for capturing proof points: See [../../docs/EVIDENCE_PACK.md](../../docs/EVIDENCE_PACK.md)*
