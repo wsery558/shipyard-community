@@ -1,8 +1,8 @@
-# OPEN DELIVERY: Shipyard Community v0.1 Open-Core Distribution Guide
+# OPEN DELIVERY: Agent Dashboard v0.1 Open-Core Distribution Guide
 
 ## Overview
 
-**Shipyard Community Open Core** is the free, open-source foundation of Shipyard Community. It provides:
+**Agent Dashboard Open Core** is the free, open-source foundation of Agent Dashboard. It provides:
 
 - ✅ Workflow execution and task management
 - ✅ Artifact generation and tracking
@@ -27,8 +27,8 @@
 
 ```bash
 # Extract distribution
-tar -xzf shipyard-community-open-v0.1.tar.gz
-cd shipyard-community-open-v0.1
+tar -xzf agent-dashboard-open-v0.1.tar.gz
+cd agent-dashboard-open-v0.1
 
 # Install dependencies
 pnpm install
@@ -63,7 +63,7 @@ Server starts on **http://localhost:8788**
 ### Directory Structure
 
 ```
-shipyard-community-open-v0.1/
+agent-dashboard-open-v0.1/
 ├── server.mjs              # Express server (runs on :8788)
 ├── package.json
 ├── pnpm-lock.yaml
@@ -99,7 +99,7 @@ shipyard-community-open-v0.1/
 │  └── usage/
 │      ├── default.json
 │      ├── ktv.json
-│      └── shipyard-community.json
+│      └── agent-dashboard.json
 │
 ├── scripts/
 │  └── audit_open_release.mjs  # Verify integrity
@@ -329,7 +329,7 @@ data/
 └── usage/
    ├── default.json        # Usage tracking
    ├── ktv.json           # Cost/token tracking
-   └── shipyard-community.json
+   └── agent-dashboard.json
 ```
 
 ### Backup Strategy
@@ -486,7 +486,7 @@ Run: `pnpm audit:open`
 
 ### Commercial Version
 
-The full **Shipyard Community** (with paid features):
+The full **Agent Dashboard** (with paid features):
 - Cloud integration (Anthropic API)
 - User management & authentication
 - Entitlement checking & licensing
@@ -494,7 +494,7 @@ The full **Shipyard Community** (with paid features):
 - Compliance audit trails
 - Professional support
 
-Contact: tsaielectro0628@gmail.com
+Contact: sales@shipyard.tsaielectro.com/en
 
 ---
 
@@ -511,7 +511,7 @@ This is the **v0.1 open-core release**. Check the repository for:
 
 ```bash
 # Download new tarball
-tar -xzf shipyard-community-open-v0.2.tar.gz -C shipyard-community-new
+tar -xzf agent-dashboard-open-v0.2.tar.gz -C agent-dashboard-new
 
 # Merge with your customizations
 # Then test thoroughly
@@ -595,8 +595,8 @@ See [CONTRIBUTING.md](docs/CONTRIBUTING.md) for details.
 ### Commercial Support
 
 For production deployments, licensing, or custom integrations:
-- Contact: tsaielectro0628@gmail.com
-- Website: https://shipyard.tsaielectro.com/en//
+- Contact: support@shipyard.tsaielectro.com/en
+- Website: https://shipyard.tsaielectro.com/en
 
 ---
 
@@ -654,7 +654,7 @@ POST   /api/projects/:id/plan
 
 ## Appendix: File Listing
 
-**Distribution Contents** (shipyard-community-open-v0.1.tar.gz):
+**Distribution Contents** (agent-dashboard-open-v0.1.tar.gz):
 
 ```
 ✅ server.mjs (5 KB)
@@ -692,4 +692,4 @@ Total: ~680 KB compressed
 **Status:** Production Ready  
 **License:** MIT
 
-For the latest version and updates, visit: https://github.com/example/shipyard-community
+For the latest version and updates, visit: https://github.com/example/agent-dashboard

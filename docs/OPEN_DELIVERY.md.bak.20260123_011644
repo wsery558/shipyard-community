@@ -596,7 +596,7 @@ See [CONTRIBUTING.md](docs/CONTRIBUTING.md) for details.
 
 For production deployments, licensing, or custom integrations:
 - Contact: tsaielectro0628@gmail.com
-- Website: https://shipyard.tsaielectro.com/en//
+- Website: https://shipyard.tsaielectro.com/en/
 
 ---
 
