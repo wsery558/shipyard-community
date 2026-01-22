@@ -402,7 +402,7 @@ function App() {
   return (
     <div style={{ height: "100vh", display: "grid", gridTemplateRows: "56px 1fr", background: "#0b0f14", color: "#e6edf3" }}>
       <div style={{ display: "flex", alignItems: "center", padding: "0 16px", borderBottom: "1px solid #1f2a37", gap: 12 }}>
-        <div style={{ fontWeight: 700 }}>Agent Dashboard</div>
+        <div style={{ fontWeight: 700 }}>Shipyard Community</div>
         
         <div style={{ display: "flex", gap: 4, marginLeft: 16 }}>
           <button

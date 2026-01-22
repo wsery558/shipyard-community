@@ -2,7 +2,7 @@
   "projects": [
     {
       "projectId": "agent-dashboard",
-      "name": "Agent Dashboard",
+      "name": "Shipyard Community",
       "repoPath": "/home/ken/code/agent-dashboard",
       "baseUrl": "http://localhost:8799",
       "compliance": {
