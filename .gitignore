@@ -1,6 +1,15 @@
 node_modules/
 ui-dist/
 dist/
+reports/
+_tmp/
 *.log
 .DS_Store
 .env.local
+*.bak.*
+**/*.bak.*
+*.brand
+*.brand.*
+**/*.brand
+**/*.brand.*
+.brand/
