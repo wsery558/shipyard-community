@@ -1,6 +1,6 @@
 {
-  "projectId": "agent-dashboard",
-  "projectName": "Agent Dashboard",
+  "projectId": "shipyard-community",
+  "projectName": "Shipyard Community",
   "status": "warn",
   "checksCount": 4,
   "checksPassed": 2,

@@ -43,11 +43,11 @@ pnpm start
 # http://127.0.0.1:8788/logs
 
 # Or fetch via API:
-curl -s http://127.0.0.1:8788/api/logs?project=agent-dashboard&format=csv \
+curl -s http://127.0.0.1:8788/api/logs?project=shipyard-community&format=csv \
   | head -20
 
 # Or inspect raw data:
-cat data/runs/agent-dashboard.jsonl | jq '.ts, .type, .command' | head -20
+cat data/runs/shipyard-community.jsonl | jq '.ts, .type, .command' | head -20
 ```
 
 ### Why this matters for Pro
@@ -96,7 +96,7 @@ pnpm start
 curl -X POST http://127.0.0.1:8788/api/policy/evaluate \
   -H 'Content-Type: application/json' \
   -d '{
-    "project": "agent-dashboard",
+    "project": "shipyard-community",
     "bash": "git push --force"
   }' | jq '.requiresApproval, .dangerReason'
 ```
@@ -151,11 +151,11 @@ pnpm start
 # 4. Click "View Artifact" or "Download Patch"
 
 # Or via API:
-curl -s http://127.0.0.1:8788/api/artifact/agent-dashboard/task-123 | jq '.'
+curl -s http://127.0.0.1:8788/api/artifact/shipyard-community/task-123 | jq '.'
 
 # Or inspect data directory:
-ls -la data/compliance/agent-dashboard/ | head -5
-cat data/compliance/agent-dashboard/2026-01-22T06-12-34-000/artifact.json
+ls -la data/compliance/shipyard-community/ | head -5
+cat data/compliance/shipyard-community/2026-01-22T06-12-34-000/artifact.json
 ```
 
 ### Why this matters for Pro
@@ -202,10 +202,10 @@ pnpm start
 # 3. Click on any project to see breakdown
 
 # Or via API:
-curl -s http://127.0.0.1:8788/api/cost?project=agent-dashboard | jq '.'
+curl -s http://127.0.0.1:8788/api/cost?project=shipyard-community | jq '.'
 
 # Or inspect cost data:
-cat data/cost.json | jq '.["agent-dashboard"]'
+cat data/cost.json | jq '.["shipyard-community"]'
 ```
 
 ### Why this matters for Pro
@@ -241,7 +241,7 @@ cat data/cost.json | jq '.["agent-dashboard"]'
    - Reason/Notes
    
 3. **PDF report** showing:
-   - Title: "Compliance Report: agent-dashboard (2026-01-01 to 2026-01-22)"
+   - Title: "Compliance Report: shipyard-community (2026-01-01 to 2026-01-22)"
    - Summary: "28 tasks, 0 denials, 0 budget overages, 3 dangerous-command approvals"
    - Timeline table (policy decisions only)
    - Signature block (for auditor sign-off)
@@ -257,11 +257,11 @@ pnpm start
 # 3. Click "Download CSV" or "Export PDF"
 
 # Or via API:
-curl -s http://127.0.0.1:8788/api/logs/agent-dashboard?format=csv > audit.csv
-curl -s http://127.0.0.1:8788/api/logs/agent-dashboard?format=pdf > audit.pdf
+curl -s http://127.0.0.1:8788/api/logs/shipyard-community?format=csv > audit.csv
+curl -s http://127.0.0.1:8788/api/logs/shipyard-community?format=pdf > audit.pdf
 
 # Or inspect raw logs:
-cat data/runs/agent-dashboard.jsonl | jq 'select(.type == "POLICY_EVALUATED")' | head -5
+cat data/runs/shipyard-community.jsonl | jq 'select(.type == "POLICY_EVALUATED")' | head -5
 ```
 
 ### Why this matters for Pro
@@ -283,7 +283,7 @@ cat data/runs/agent-dashboard.jsonl | jq 'select(.type == "POLICY_EVALUATED")' |
 
 ### What to capture (screenshot/video)
 1. **Dashboard state card** showing:
-   - Project: "agent-dashboard"
+   - Project: "shipyard-community"
    - Progress: "40%" (with progress bar)
    - Current task: "Optimization pass 2/5"
    - Started: "1 minute ago"

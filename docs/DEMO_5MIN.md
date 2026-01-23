@@ -35,7 +35,7 @@ Then open **http://127.0.0.1:8788** in your browser.
 
 ### What to do
 1. Click **"Logs"** in the top menu
-2. Select a recent project from the list (e.g., `agent-dashboard`)
+2. Select a recent project from the list (e.g., `shipyard-community`)
 3. Click **"View Audit Log"** or **"Download CSV"**
 
 ### What you see
