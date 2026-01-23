@@ -4,3 +4,54 @@ dist/
 *.log
 .DS_Store
 .env.local
+# ---- public repo hygiene (generated/local) ----
+dist/
+ui-dist/
+reports/
+_tmp/
+
+# backup artifacts (never track)
+*.bak.*
+**/*.bak.*
+
+# local branding scratch (never track)
+*.brand
+*.brand.*
+.brand/
+
+# private launch assets (never track)
+_private/
+
+# ---- repo hygiene: generated / local scratch ----
+_tmp/
+reports/
+dist/
+ui-dist/
+
+# backup artifacts
+*.bak.*
+**/*.bak.*
+
+# local branding scratch
+*.brand
+*.brand.*
+**/*.brand
+**/*.brand.*
+.brand/
+
+# ---- repo hygiene: generated / local scratch ----
+_tmp/
+reports/
+dist/
+ui-dist/
+
+# backup artifacts
+*.bak.*
+**/*.bak.*
+
+# local branding scratch
+*.brand
+*.brand.*
+**/*.brand
+**/*.brand.*
+.brand/

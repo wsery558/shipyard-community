@@ -576,7 +576,7 @@ EOF
 
 ### Getting Help
 
-- 📖 See [CONTRIBUTING.md](docs/CONTRIBUTING.md) for development
+- 📖 See [CONTRIBUTING.md](CONTRIBUTING.md) for development
 - 🔒 Security issues: tsaielectro0628@gmail.com
 - 🐛 Bug reports: GitHub Issues (coming soon)
 - 💬 Discussions: GitHub Discussions (coming soon)
@@ -590,7 +590,7 @@ The open-core is **community-driven**. Contributions welcome!
 3. Run `pnpm test` to verify
 4. Submit PR with description
 
-See [CONTRIBUTING.md](docs/CONTRIBUTING.md) for details.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
 ### Commercial Support
 

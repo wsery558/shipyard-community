@@ -110,7 +110,7 @@ curl -fsS http://127.0.0.1:8788/api/projects
 
 Optional: query `/api/project-status` for a specific project once you know the ID. In this open-core snapshot it now returns a lightweight stub (`{ projectId, status: "unknown", note: "Platform project status is not available in this open-core snapshot." }`) so demos never surface a 500 error.
 
-## Troubleshooting
+-## Troubleshooting
 - **Missing `ui-dist`**: Run `pnpm build` to regenerate the bundled UI from [ui](ui/).
 - **Port 8788 already in use**: Run with a different port:
   ```bash
@@ -118,6 +118,7 @@ Optional: query `/api/project-status` for a specific project once you know the I
   ```
 - **OpenAI key**: Not required. All OpenAI-powered endpoints return HTTP 501 unless you set `OPENAI_API_KEY`; this keeps the open-core snapshot self-contained.
 - **Smoke test fails**: The smoke script runs on an ephemeral port by default. Override with `SMOKE_PORT=<port>` if needed; the script sets `WS_SMOKE=1` and pings `/health`, `/api/state`, and `/api/projects`.
+- For more troubleshooting guidance, see [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md).
 
 ## Open-core included vs paid/platform (501 by design)
 ### Included

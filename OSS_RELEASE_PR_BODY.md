@@ -2,7 +2,7 @@
 
 ## Summary
 
-This PR adds minimal continuous integration and polish to prepare the agent-dashboard-open repository for OSS release.
+This PR adds minimal continuous integration and polish to prepare the shipyard-community repository for OSS release.
 
 ## What Changed
 
@@ -119,7 +119,7 @@ All changes are CI + documentation only.
 The badge in README.md points to the GitHub Actions workflow:
 
 ```markdown
-[![CI](https://github.com/github/agent-dashboard-open/actions/workflows/ci.yml/badge.svg)](https://github.com/github/agent-dashboard-open/actions/workflows/ci.yml)
+[![CI](https://github.com/wsery558/shipyard-community/actions/workflows/ci.yml/badge.svg)](https://github.com/wsery558/shipyard-community/actions/workflows/ci.yml)
 ```
 
 Update the repository URL in the badge if forking this repo.
