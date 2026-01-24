@@ -6,7 +6,7 @@ Thanks for helping keep Shipyard safe.
 
 Please report security issues privately.
 
-- Email: wsery558@gmail.com
+- Email: tsaielectro0628@gmail.com
 - Include: affected component, steps to reproduce, impact, and any safe proof-of-concept.
 
 We try to acknowledge reports and coordinate a fix. We do not guarantee response or resolution timelines.
