@@ -73,7 +73,8 @@ const DEFAULT_POLICY = {
     {
       id: 'deny-fork-bomb',
       action: 'deny',
-      pattern: /:[()]{:|:&[}];:/i,
+      // Keep the legacy matches and recognize whitespace in the standard form.
+      pattern: /:[()]{:|:&[}];:|:\s*\(\s*\)\s*\{\s*:\s*\|\s*:\s*&\s*\}\s*;\s*:/i,
       reason: 'fork bomb detected - destructive',
       severity: 'critical',
       code: 'DANGER_FORK_BOMB'

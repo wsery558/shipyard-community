@@ -24,6 +24,8 @@ const nodeGlobals = {
   console: 'readonly',
   process: 'readonly',
   Buffer: 'readonly',
+  URL: 'readonly',
+  structuredClone: 'readonly',
   __dirname: 'readonly',
   __filename: 'readonly'
 };
@@ -64,7 +66,7 @@ export default [
   // Node/server files
   {
     ignores: ['node_modules/**', 'ui-dist/**', 'data/**', 'packages/open-core/data/**', 'dist/**'],
-    files: ['server.mjs', 'scripts/**/*.mjs', 'src/**/*.mjs', 'packages/**/*.mjs', '*.config.js', '**/vite.config.js'],
+    files: ['server.mjs', 'scripts/**/*.mjs', 'test/**/*.mjs', 'src/**/*.mjs', 'packages/**/*.mjs', '*.config.js', '**/vite.config.js'],
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',

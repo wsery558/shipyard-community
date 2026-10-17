@@ -60,7 +60,7 @@
     {
       "id": "deny-fork-bomb",
       "action": "deny",
-      "pattern": ":[()]{:|:&[}];:",
+      "pattern": ":[()]{:|:&[}];:|:\\s*\\(\\s*\\)\\s*\\{\\s*:\\s*\\|\\s*:\\s*&\\s*\\}\\s*;\\s*:",
       "reason": "fork bomb detected - destructive",
       "severity": "critical",
       "code": "DANGER_FORK_BOMB"
