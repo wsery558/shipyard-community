@@ -24,11 +24,13 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       
-      - name: Enable pnpm via corepack
-        run: corepack enable
+      - name: Enable the validated pnpm version
+        run: |
+          corepack enable
+          corepack prepare pnpm@11.25.0 --activate
       
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --frozen-lockfile --ignore-scripts
       
       - name: Build UI
         run: pnpm -s build

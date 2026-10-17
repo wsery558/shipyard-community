@@ -21,6 +21,11 @@ The command-policy tests pass strings to the classifier. They never execute the
 destructive or approval-required example commands. Policy fixtures live in
 disposable temporary directories, so tests do not change the user's policy file.
 
+CI pins pnpm 11.25.0 and installs with `--frozen-lockfile --ignore-scripts`, matching
+the maintenance validation environment. Smoke tests set `DISABLE_PTY=1` and do not
+exercise the optional native terminal. Installation lifecycle scripts are not
+approved or run by that CI job; native terminal support needs separate validation.
+
 ## Command cleanup
 
 The plan and command-policy regression aliases now invoke their actual test files.
