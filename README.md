@@ -77,7 +77,7 @@ Unlike code assistants or chat-based tools, Shipyard **governs delivery** from r
 
 ### Requirements
 - Node.js 20.19+ or 22.12+ (the supported range required by the pinned Vite dependency)
-- pnpm 9 or newer
+- pnpm 9.15.9 (pinned in `package.json` for Corepack)
 
 ### Install
 ```bash

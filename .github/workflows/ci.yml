@@ -27,7 +27,7 @@ jobs:
       - name: Enable the validated pnpm version
         run: |
           corepack enable
-          corepack prepare pnpm@11.25.0 --activate
+          corepack prepare pnpm@9.15.9 --activate
       
       - name: Install dependencies
         run: pnpm install --frozen-lockfile --ignore-scripts
