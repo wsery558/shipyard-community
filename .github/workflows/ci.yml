@@ -28,18 +28,15 @@ jobs:
         run: corepack enable
       
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
       
       - name: Build UI
         run: pnpm -s build
       
-      - name: Run smoke tests
-        run: pnpm -s test:smoke
+      - name: Check scripts, boundaries, unit tests and server smoke tests
+        run: pnpm -s test
         env:
           DISABLE_PTY: '1'
       
       - name: Lint
         run: pnpm -s lint
-      
-      - name: Typecheck
-        run: pnpm -s typecheck

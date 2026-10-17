@@ -17,10 +17,10 @@ Pain → Proof → Upgrade (5-minute path):
 
 You need **three things** to ship reliably:
 1. **Traceable runs**: Every task start, policy decision, approval, and completion is timestamped and logged. When something fails, you know exactly what happened.
-2. **Verifiable failures**: Failed tasks show the command, patch, and output. Bad changes never reach production because policy gates require approval for dangerous operations.
-3. **Visible cost control**: Every API call is attributed to a model and project. Budget limits are enforced; overage is prevented. Your team knows what delivery costs.
+2. **Verifiable failures**: Failed tasks show the command, patch, and output. Configured command rules can deny selected operations or mark them as requiring approval.
+3. **Visible cost control**: Local cost records can be compared with a project's budget. The budget helper checks recorded spend against a configured limit; it does not reserve future API costs.
 
-**Community solves all three locally.** Pro solves them for your team at scale.
+**Community provides these local workflow tools.** Pro adds team features.
 
 **Community helps you run. Pro helps you prove.**
 
@@ -32,7 +32,7 @@ You need **three things** to ship reliably:
 
 Shipyard is built for **reliable delivery**—not conversation. You get a replayable, verifiable, shippable workflow:
 - **Replayable**: Every project run is logged and timestamped; any step can be re-executed with the same inputs. See [Audit Trail →](docs/EVIDENCE_PACK.md#proof-point-1-complete-audit-trail-traceable-runs)
-- **Verifiable**: Compliance, safety gates, budget guards, and compliance reporting ensure nothing ships unvetted. See [Policy Gates →](docs/EVIDENCE_PACK.md#proof-point-2-policy-gates-fail-fast-verification)
+- **Verifiable**: Command policy decisions and recorded budget checks can be inspected locally. Review the actual command and resulting changes before approving a run. See [Policy Gates →](docs/EVIDENCE_PACK.md#proof-point-2-policy-gates-fail-fast-verification)
 - **Shippable**: The orchestrator handles the full project lifecycle: plan, execute, report, and archive. See [Cost Control →](docs/EVIDENCE_PACK.md#proof-point-4-cost-tracking--budget-control-visible-cost)
 
 Unlike code assistants or chat-based tools, Shipyard **governs delivery** from request through archive, so your team can trust what ships.
@@ -76,7 +76,7 @@ Unlike code assistants or chat-based tools, Shipyard **governs delivery** from r
 ## Quickstart
 
 ### Requirements
-- Node.js 20 or newer (includes the built-in `fetch` used by smoke runs)
+- Node.js 20.19+ or 22.12+ (the supported range required by the pinned Vite dependency)
 - pnpm 9 or newer
 
 ### Install
@@ -141,10 +141,15 @@ These stubs signal intentionally omitted paid/platform features.
 ## Scripts
 - `pnpm build` – produces `ui-dist` for the bundled server/UI experience.
 - `pnpm start` / `pnpm dev` – serves API + UI on `PORT` (default 8788).
+- `pnpm test` – checks package-script targets and open-core boundaries, runs unit tests, then starts the server for smoke checks.
+- `pnpm test:unit` – runs behavioral tests for budgets, plan merging, command policy and package-script validation using Node's built-in test runner.
+- `pnpm test:scripts` – checks that explicit local script targets and `pnpm run` aliases exist, without executing them.
+- `pnpm test:boundaries` – checks open surfaces for imports of paid-platform code.
 - `pnpm test:smoke` – runs the smoke matrix (`WS_SMOKE=1`) and hits `/api/state`, `/api/projects`.
 - `pnpm lint` – permissive lint pass over `.js`/`.mjs`/`.jsx`; emits warnings but exits 0.
-- `pnpm typecheck` – stub: prints “No TypeScript typecheck (JS project)”.
-- `pnpm test:unit` – stub: prints “No unit tests in open-core snapshot”.
+- `pnpm test:regression` – runs the plan and command-policy suites; these also run as part of `pnpm test:unit`.
+
+See [maintenance checks and limits](docs/MAINTENANCE.md) for the scope of these checks and the removed commands.
 ## Delivery Governance Demo
 
 See [DELIVERY.md](DELIVERY.md) for a walkthrough of how governance works: smoke checks, run summaries, cost tracking (Pro feature), and audit logs.

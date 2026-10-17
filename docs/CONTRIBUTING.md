@@ -25,21 +25,24 @@ import { something } from '../../packages/paid-platform/...';  // ❌ Never
 ### Adding Features to Open Core
 
 1. Add new module to **packages/open-core/src/**
-2. Export from **packages/open-core/src/index.mjs**
+2. Export from **packages/open-core/src/core/index.mjs**
 3. Test with `pnpm test:boundaries` to verify no paid-platform leakage
 4. Run full suite: `pnpm test`
 
 ### Testing
 
 ```bash
-# Run all tests (includes boundary check)
+# Run script-target, boundary, unit and server smoke checks
 pnpm test
 
 # Boundary check only
 pnpm test:boundaries
 
-# Unit tests
+# Unit tests (no external service or API key required)
 pnpm test:unit
+
+# Package-script target validation
+pnpm test:scripts
 
 # Smoke tests
 pnpm test:smoke
@@ -56,21 +59,11 @@ pnpm audit:open
 4. Open PR with clear description
 5. After merge, boundary check runs on CI
 
-### Open Release Packaging
+### Source Distribution
 
-To create a distribution tarball:
-
-```bash
-pnpm pack:open
-```
-
-This:
-1. Audits for paid-platform code
-2. Verifies all paid routes stubbed (501)
-3. Creates tarball with only open-core
-4. Includes OPEN_DELIVERY.md, LICENSE, SECURITY.md
-
-Output: `shipyard-community-open-v0.1.tar.gz`
+Use a tagged GitHub source archive for this public snapshot. Install dependencies
+and build the UI after extracting it. The old `pack:open` command referenced an
+absent script and has been removed; it did not produce a verified distribution.
 
 ### Release Notes
 
@@ -78,8 +71,8 @@ When creating an open-core release:
 
 1. Update version in **package.json**
 2. Document changes in **CHANGELOG.md**
-3. Run `pnpm pack:open`
-4. Verify tarball contents
+3. Run `pnpm build`, `pnpm test` and `pnpm lint`; retain the actual results
+4. Review the source archive contents and verify the quickstart from a fresh copy
 5. Commit and tag:
    ```bash
    git tag open/v0.1
@@ -120,3 +113,4 @@ chore(boundaries): improve check script
 ## Questions?
 
 See **OPEN_DELIVERY.md** for complete distribution guide.
+See **MAINTENANCE.md** for check coverage, removed commands and known limits.

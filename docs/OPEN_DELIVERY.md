@@ -620,9 +620,12 @@ pnpm audit:open
 # Rebuild UI
 pnpm build:ui
 
-# Create new open-core tarball
-pnpm pack:open
+# Validate local package-script targets
+pnpm test:scripts
 ```
+
+Source distributions use tagged GitHub source archives. The former `pack:open`
+wrapper was absent from this snapshot and has been removed.
 
 ### API Quick Reference
 

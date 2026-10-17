@@ -166,7 +166,7 @@ cat data/compliance/shipyard-community/2026-01-22T06-12-34-000/artifact.json
 
 ## Proof Point 4: Cost Tracking & Budget Control (Visible Cost)
 
-**What it proves**: Every API call is tracked for cost; budget limits are enforced; overage is prevented.
+**What it shows**: Recorded spend can be compared with a configured project budget. This check does not reserve future API costs or guarantee that overage cannot occur.
 
 **Pain it solves**: "Our OpenAI bill was $50k last month. Which projects caused it? Can we cap spending?"
 
@@ -340,7 +340,7 @@ Use these proof points to build your **demo video** or **screenshot deck**:
 | Audit Trail | "I can trace any action to a timestamp and approver." | Team-wide audit, cross-project search, retention proof for compliance. |
 | Policy Gates | "Dangerous commands require approval before execution." | Role-based approval, escalation workflows, auto-denial with audit. |
 | Artifacts | "Failed tasks leave behind what was attempted and why." | Indexed artifacts, auto-retention, team sharing, diff visualization. |
-| Cost Control | "Every model call is tracked; budget hard-limits prevent overage." | Team budgets, cost attribution by user, variance alerts, forecasts. |
+| Cost Control | "Recorded spend can be compared with the configured project budget." | Team budgets, cost attribution by user, variance alerts, forecasts. |
 | Compliance | "Audit logs export as CSV/PDF for external auditors." | Legal-grade PDF, cross-project rollup, SOC2 format, retention proof. |
 | Real-Time | "Multiple team members see the same dashboard live." | Role-based visibility, alert routing, enterprise SSO, usage analytics. |
 
